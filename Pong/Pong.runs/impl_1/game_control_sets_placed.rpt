@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date         : Sat Nov 30 14:22:06 2024
+| Date         : Sat Nov 30 14:59:51 2024
 | Host         : CSE-P07-2168-50 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file game_control_sets_placed.rpt
 | Design       : game
@@ -27,7 +27,7 @@ Table of Contents
 |    Minimum number of control sets                        |    22 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    94 |
+| Unused register locations in slices containing registers |    95 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -43,8 +43,8 @@ Table of Contents
 | >= 0 to < 4        |     5 |
 | >= 4 to < 6        |     8 |
 | >= 6 to < 8        |     2 |
-| >= 8 to < 10       |     0 |
-| >= 10 to < 12      |     3 |
+| >= 8 to < 10       |     1 |
+| >= 10 to < 12      |     2 |
 | >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     1 |
 | >= 16              |     3 |
@@ -59,10 +59,10 @@ Table of Contents
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | No           | No                    | No                     |              16 |            8 |
-| No           | No                    | Yes                    |             198 |           82 |
+| No           | No                    | Yes                    |             198 |           84 |
 | No           | Yes                   | No                     |               0 |            0 |
 | Yes          | No                    | No                     |               0 |            0 |
-| Yes          | No                    | Yes                    |             100 |           32 |
+| Yes          | No                    | Yes                    |              99 |           29 |
 | Yes          | Yes                   | No                     |               0 |            0 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
@@ -70,31 +70,31 @@ Table of Contents
 4. Detailed Control Set Information
 -----------------------------------
 
-+---------------------------+---------------------------------------------------+------------------+------------------+----------------+--------------+
-|        Clock Signal       |                   Enable Signal                   | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
-+---------------------------+---------------------------------------------------+------------------+------------------+----------------+--------------+
-|  decoder/cd/CLK           |                                                   | reset_IBUF       |                1 |              2 |         2.00 |
-|  vga/paddle2/e1/cd/newclk |                                                   | reset_IBUF       |                1 |              3 |         3.00 |
-|  vga/paddle1/e1/cd/newclk |                                                   | reset_IBUF       |                1 |              3 |         3.00 |
-|  vga/paddle1/e2/cd/newclk |                                                   | reset_IBUF       |                1 |              3 |         3.00 |
-|  vga/paddle2/e2/cd/newclk |                                                   | reset_IBUF       |                1 |              3 |         3.00 |
-|  vga/paddle2/e1/cd/newclk |                                                   |                  |                2 |              4 |         2.00 |
-|  vga/paddle1/e1/cd/newclk |                                                   |                  |                2 |              4 |         2.00 |
-|  vga/paddle1/e2/cd/newclk |                                                   |                  |                2 |              4 |         2.00 |
-|  vga/paddle2/e2/cd/newclk |                                                   |                  |                2 |              4 |         2.00 |
-|  clk_IBUF_BUFG            | score/player2_tens[3]_i_1_n_0                     | reset_IBUF       |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG            | score/player1_tens[3]_i_1_n_0                     | reset_IBUF       |                1 |              4 |         4.00 |
-|  clk_IBUF_BUFG            | vga/goal_player2_reg__0_0[0]                      | reset_IBUF       |                2 |              4 |         2.00 |
-|  clk_IBUF_BUFG            | vga/E[0]                                          | reset_IBUF       |                2 |              4 |         2.00 |
-|  clk_IBUF_BUFG            | vga/paddle1/e2/e/E[0]                             | reset_IBUF       |                2 |              7 |         3.50 |
-|  clk_IBUF_BUFG            | vga/paddle2/e2/e/E[0]                             | reset_IBUF       |                2 |              7 |         3.50 |
-|  clk25MHz_BUFG            | vga/paddle1/E[0]                                  | reset_IBUF       |                4 |             10 |         2.50 |
-|  clk25MHz_BUFG            | vga/paddle2/E[0]                                  | reset_IBUF       |                5 |             10 |         2.00 |
-|  clk25MHz_BUFG            | vga/v_counter                                     | reset_IBUF       |                5 |             10 |         2.00 |
-|  clk25MHz_BUFG            |                                                   | reset_IBUF       |                8 |             14 |         1.75 |
-|  clk_IBUF_BUFG            | vga/paddle1/e2/e/FSM_sequential_state_reg[0]_0[0] | reset_IBUF       |                3 |             20 |         6.67 |
-|  clk_IBUF_BUFG            | vga/paddle2/e2/e/FSM_sequential_state_reg[0]_0[0] | reset_IBUF       |                5 |             20 |         4.00 |
-|  clk_IBUF_BUFG            |                                                   | reset_IBUF       |               69 |            170 |         2.46 |
-+---------------------------+---------------------------------------------------+------------------+------------------+----------------+--------------+
++---------------------------+---------------------------------------+------------------+------------------+----------------+--------------+
+|        Clock Signal       |             Enable Signal             | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
++---------------------------+---------------------------------------+------------------+------------------+----------------+--------------+
+|  decoder/cd/CLK           |                                       | reset_IBUF       |                1 |              2 |         2.00 |
+|  vga/paddle2/e2/cd/newclk |                                       | reset_IBUF       |                3 |              3 |         1.00 |
+|  vga/paddle2/e1/cd/newclk |                                       | reset_IBUF       |                1 |              3 |         3.00 |
+|  vga/paddle1/e1/cd/newclk |                                       | reset_IBUF       |                1 |              3 |         3.00 |
+|  vga/paddle1/e2/cd/newclk |                                       | reset_IBUF       |                2 |              3 |         1.50 |
+|  vga/paddle2/e2/cd/newclk |                                       |                  |                2 |              4 |         2.00 |
+|  vga/paddle2/e1/cd/newclk |                                       |                  |                2 |              4 |         2.00 |
+|  vga/paddle1/e1/cd/newclk |                                       |                  |                2 |              4 |         2.00 |
+|  vga/paddle1/e2/cd/newclk |                                       |                  |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG            | vga/E[0]                              | reset_IBUF       |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG            | vga/goal_player2_reg__0_0[0]          | reset_IBUF       |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG            | score/player2_tens[3]_i_1_n_0         | reset_IBUF       |                2 |              4 |         2.00 |
+|  clk_IBUF_BUFG            | score/player1_tens[3]_i_1_n_0         | reset_IBUF       |                1 |              4 |         4.00 |
+|  clk_IBUF_BUFG            | vga/paddle2/e2/e/E[0]                 | reset_IBUF       |                2 |              7 |         3.50 |
+|  clk_IBUF_BUFG            | vga/paddle1/e2/e/E[0]                 | reset_IBUF       |                2 |              7 |         3.50 |
+|  clk25MHz_BUFG            | vga/paddle1/E[0]                      | reset_IBUF       |                4 |              9 |         2.25 |
+|  clk25MHz_BUFG            | vga/v_counter[9]_i_1_n_0              | reset_IBUF       |                6 |             10 |         1.67 |
+|  clk25MHz_BUFG            | vga/paddle1/v_counter_reg[7][0]       | reset_IBUF       |                2 |             10 |         5.00 |
+|  clk25MHz_BUFG            |                                       | reset_IBUF       |                7 |             14 |         2.00 |
+|  clk_IBUF_BUFG            | vga/paddle2/e2/e/move_timer_reg[5][0] | reset_IBUF       |                4 |             20 |         5.00 |
+|  clk_IBUF_BUFG            | vga/paddle1/e2/e/move_timer_reg[5][0] | reset_IBUF       |                4 |             20 |         5.00 |
+|  clk_IBUF_BUFG            |                                       | reset_IBUF       |               69 |            170 |         2.46 |
++---------------------------+---------------------------------------+------------------+------------------+----------------+--------------+
 
 

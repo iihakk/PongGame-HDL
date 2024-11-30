@@ -2,16 +2,25 @@
 # Vivado v2022.1 (64-bit)
 # SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
 # IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
-# Start of session at: Sat Nov 30 14:27:12 2024
-# Process ID: 13228
+# Start of session at: Sat Nov 30 13:27:39 2024
+# Process ID: 380
 # Current directory: C:/Users/Yara2005/PongGame-HDL/Pong
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent7764 C:\Users\Yara2005\PongGame-HDL\Pong\Pong.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent7404 C:\Users\Yara2005\PongGame-HDL\Pong\Pong.xpr
 # Log file: C:/Users/Yara2005/PongGame-HDL/Pong/vivado.log
 # Journal file: C:/Users/Yara2005/PongGame-HDL/Pong\vivado.jou
 # Running On: CSE-P07-2168-50, OS: Windows, CPU Frequency: 3696 MHz, CPU Physical cores: 8, Host memory: 34020 MB
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/Yara2005/PongGame-HDL/Pong/Pong.xpr
+update_compile_order -fileset sources_1
+add_files -norecurse C:/Users/Yara2005/PongGame-HDL/Pong/Pong.srcs/sources_1/new/clock_div.v
+update_compile_order -fileset sources_1
+add_files -fileset constrs_1 -norecurse C:/Users/Yara2005/PongGame-HDL/Pong/Pong.srcs/constrs_1/new/Pong_Constraint.xdc
+update_compile_order -fileset sources_1
+reset_run synth_1
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1
+add_files -norecurse C:/Users/Yara2005/PongGame-HDL/Pong/Pong.srcs/sources_1/new/Ex4enable.v
 update_compile_order -fileset sources_1
 reset_run synth_1
 launch_runs synth_1 -jobs 8
@@ -49,16 +58,17 @@ set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property PROGRAM.FILE {C:/Users/Yara2005/PongGame-HDL/Pong/Pong.runs/impl_1/game.bit} [get_hw_devices xc7a35t_0]
 program_hw_devices [get_hw_devices xc7a35t_0]
 refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
-reset_run synth_1
-launch_runs synth_1 -jobs 8
-wait_on_run synth_1
-launch_runs impl_1 -to_step write_bitstream -jobs 8
-wait_on_run impl_1
 set_property PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property FULL_PROBES.FILE {} [get_hw_devices xc7a35t_0]
 set_property PROGRAM.FILE {C:/Users/Yara2005/PongGame-HDL/Pong/Pong.runs/impl_1/game.bit} [get_hw_devices xc7a35t_0]
 program_hw_devices [get_hw_devices xc7a35t_0]
 refresh_hw_device [lindex [get_hw_devices xc7a35t_0] 0]
+reset_run synth_1
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1
+reset_run synth_1
+launch_runs synth_1 -jobs 8
+wait_on_run synth_1
 reset_run synth_1
 launch_runs synth_1 -jobs 8
 wait_on_run synth_1

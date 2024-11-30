@@ -26,10 +26,10 @@ module VGAControl(
 
     // VGA Timing Parameters
     parameter H_DISPLAY = 640;
-    parameter V_DISPLAY = 480;
-    parameter BALL_SIZE = 10;
-    parameter PADDLE_WIDTH = 10;
-    parameter PADDLE_HEIGHT = 60;
+    parameter V_DISPLAY = 460;
+    parameter BALL_SIZE = 20;
+    parameter PADDLE_WIDTH = 20;
+    parameter PADDLE_HEIGHT = 120;
 
     reg [9:0] h_counter = 0;
     reg [9:0] v_counter = 0;
@@ -121,15 +121,16 @@ module VGAControl(
     end
 
     wire display_area = (h_counter < H_DISPLAY) && (v_counter < V_DISPLAY);
-    wire ball_area = (h_counter >= ball_x && h_counter < ball_x + BALL_SIZE &&
-                      v_counter >= ball_y && v_counter < ball_y + BALL_SIZE);
+    
+ wire ball_area = (h_counter >= ball_x && h_counter < ball_x + BALL_SIZE && v_counter >= ball_y && v_counter < ball_y + BALL_SIZE);
+
     wire paddle1_area = (h_counter >= 0 && h_counter < PADDLE_WIDTH &&
                          v_counter >= y_paddle1 && v_counter < y_paddle1 + PADDLE_HEIGHT);
     wire paddle2_area = (h_counter >= H_DISPLAY - PADDLE_WIDTH && h_counter < H_DISPLAY &&
                          v_counter >= y_paddle2 && v_counter < y_paddle2 + PADDLE_HEIGHT);
 
-    assign red = (display_area && (ball_area || paddle1_area || paddle2_area)) ? 4'b1111 : 4'b0000;
-    assign green = red;
-    assign blue = red;
+    assign red = (display_area && !(paddle1_area || paddle2_area)) ? 4'b1111 : 4'b0000;
+    assign green = (display_area && !(ball_area || paddle1_area || paddle2_area)) ? 4'b1111 : 4'b0000;
+    assign blue = (display_area && !(ball_area)) ? 4'b1111 : 4'b0000;
 
 endmodule

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date         : Sat Nov 30 14:22:28 2024
+| Date         : Sat Nov 30 15:00:14 2024
 | Host         : CSE-P07-2168-50 running 64-bit major release  (build 9200)
 | Command      : report_clock_utilization -file game_clock_utilization_routed.rpt
 | Design       : game
@@ -48,7 +48,7 @@ Table of Contents
 | Global Id | Source Id | Driver Type/Pin | Constraint | Site          | Clock Region | Load Clock Region | Clock Loads | Non-Clock Loads | Clock Period | Clock | Driver Pin           | Net           |
 +-----------+-----------+-----------------+------------+---------------+--------------+-------------------+-------------+-----------------+--------------+-------+----------------------+---------------+
 | g0        | src0      | BUFG/O          | None       | BUFGCTRL_X0Y0 | n/a          |                 2 |         240 |               0 |              |       | clk_IBUF_BUFG_inst/O | clk_IBUF_BUFG |
-| g1        | src1      | BUFG/O          | None       | BUFGCTRL_X0Y1 | n/a          |                 1 |          44 |               0 |              |       | clk25MHz_BUFG_inst/O | clk25MHz_BUFG |
+| g1        | src1      | BUFG/O          | None       | BUFGCTRL_X0Y1 | n/a          |                 1 |          43 |               0 |              |       | clk25MHz_BUFG_inst/O | clk25MHz_BUFG |
 +-----------+-----------+-----------------+------------+---------------+--------------+-------------------+-------------+-----------------+--------------+-------+----------------------+---------------+
 * Clock Loads column represents the clock pin loads (pin count). Internal cell leaf pins are not counted
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
@@ -73,11 +73,11 @@ Table of Contents
 +----------+-----------------+------------+------------------+--------------+-------------+-----------------+--------------+-------+---------------------------------+--------------------------+
 | Local Id | Driver Type/Pin | Constraint | Site/BEL         | Clock Region | Clock Loads | Non-Clock Loads | Clock Period | Clock | Driver Pin                      | Net                      |
 +----------+-----------------+------------+------------------+--------------+-------------+-----------------+--------------+-------+---------------------------------+--------------------------||
-| 0        | FDCE/Q          | None       | SLICE_X3Y23/AFF  | X0Y0         |           7 |               1 |              |       | vga/paddle1/e1/cd/clk_out_reg/Q | vga/paddle1/e1/cd/newclk - Static -
-| 1        | FDCE/Q          | None       | SLICE_X14Y21/AFF | X0Y0         |           7 |               1 |              |       | vga/paddle1/e2/cd/clk_out_reg/Q | vga/paddle1/e2/cd/newclk - Static -
-| 2        | FDCE/Q          | None       | SLICE_X8Y24/AFF  | X0Y0         |           7 |               1 |              |       | vga/paddle2/e1/cd/clk_out_reg/Q | vga/paddle2/e1/cd/newclk - Static -
-| 3        | FDCE/Q          | None       | SLICE_X0Y24/AFF  | X0Y0         |           7 |               1 |              |       | vga/paddle2/e2/cd/clk_out_reg/Q | vga/paddle2/e2/cd/newclk - Static -
-| 4        | FDCE/Q          | None       | SLICE_X62Y25/AFF | X1Y0         |           2 |               1 |              |       | decoder/cd/clk_out_reg/Q        | decoder/cd/CLK           - Static -
+| 0        | FDCE/Q          | None       | SLICE_X0Y32/AFF  | X0Y0         |           7 |               1 |              |       | vga/paddle1/e1/cd/clk_out_reg/Q | vga/paddle1/e1/cd/newclk - Static -
+| 1        | FDCE/Q          | None       | SLICE_X12Y31/AFF | X0Y0         |           7 |               1 |              |       | vga/paddle1/e2/cd/clk_out_reg/Q | vga/paddle1/e2/cd/newclk - Static -
+| 2        | FDCE/Q          | None       | SLICE_X6Y29/AFF  | X0Y0         |           7 |               1 |              |       | vga/paddle2/e1/cd/clk_out_reg/Q | vga/paddle2/e1/cd/newclk - Static -
+| 3        | FDCE/Q          | None       | SLICE_X11Y32/AFF | X0Y0         |           7 |               1 |              |       | vga/paddle2/e2/cd/clk_out_reg/Q | vga/paddle2/e2/cd/newclk - Static -
+| 4        | FDCE/Q          | None       | SLICE_X62Y26/AFF | X1Y0         |           2 |               1 |              |       | decoder/cd/clk_out_reg/Q        | decoder/cd/CLK           - Static -
 +----------+-----------------+------------+------------------+--------------+-------------+-----------------+--------------+-------+---------------------------------+--------------------------||
 * Local Clocks in this context represents only clocks driven by non-global buffers
 ** Clock Loads column represents the clock pin loads (pin count). Internal cell leaf pins are not counted
@@ -92,8 +92,8 @@ Table of Contents
 +-------------------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+
 | Clock Region Name | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail | Used | Avail |
 +-------------------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+------+-------+
-| X0Y0              |    2 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |  258 |  1200 |   89 |   400 |    0 |    20 |    0 |    10 |    0 |    20 |
-| X1Y0              |    1 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |   56 |  1500 |   30 |   450 |    0 |    40 |    0 |    20 |    0 |    20 |
+| X0Y0              |    2 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |  257 |  1200 |  140 |   400 |    0 |    20 |    0 |    10 |    0 |    20 |
+| X1Y0              |    1 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |   56 |  1500 |   32 |   450 |    0 |    40 |    0 |    20 |    0 |    20 |
 | X0Y1              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  1200 |    0 |   400 |    0 |    20 |    0 |    10 |    0 |    20 |
 | X1Y1              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  1500 |    0 |   450 |    0 |    40 |    0 |    20 |    0 |    20 |
 | X0Y2              |    0 |    12 |    0 |     4 |    0 |     2 |    0 |     4 |    0 |     1 |    0 |     1 |    0 |     0 |    0 |     0 |    0 |    50 |    0 |    50 |    0 |  1800 |    0 |   400 |    0 |    20 |    0 |    10 |    0 |    20 |
@@ -144,7 +144,7 @@ All Modules
 +-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+---------------+
 | Global Id | Driver Type/Pin | Driver Region (D) | Clock | Period (ns) | Waveform (ns) | Slice Loads | IO Loads | Clocking Loads | GT Loads | Net           |
 +-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+---------------+
-| g1        | BUFG/O          | n/a               |       |             |               |          44 |        0 |              0 |        0 | clk25MHz_BUFG |
+| g1        | BUFG/O          | n/a               |       |             |               |          43 |        0 |              0 |        0 | clk25MHz_BUFG |
 +-----------+-----------------+-------------------+-------+-------------+---------------+-------------+----------+----------------+----------+---------------+
 * Slice Loads column represents load cell count of all cell types other than IO, GT and clock resources
 ** IO Loads column represents load cell count of IO types
@@ -157,7 +157,7 @@ All Modules
 +----+-----+----+-----------------------+
 | Y2 |   0 |  0 |                     - |
 | Y1 |   0 |  0 |                     - |
-| Y0 |  44 |  0 |                     0 |
+| Y0 |  43 |  0 |                     0 |
 +----+-----+----+-----------------------+
 
 
@@ -168,7 +168,7 @@ All Modules
 | Global Id | Track | Driver Type/Pin | Constraint | Clock Loads | Non-Clock Loads | FF  | Memory LUTs | RAMB | DSP | GT | MMCM | PLL | Hard IP | Net           |
 +-----------+-------+-----------------+------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+---------------+
 | g0        | n/a   | BUFG/O          | None       |         186 |               0 | 186 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | clk_IBUF_BUFG |
-| g1        | n/a   | BUFG/O          | None       |          44 |               0 |  44 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | clk25MHz_BUFG |
+| g1        | n/a   | BUFG/O          | None       |          43 |               0 |  43 |           0 |    0 |   0 |  0 |    0 |   0 |       0 | clk25MHz_BUFG |
 +-----------+-------+-----------------+------------+-------------+-----------------+-----+-------------+------+-----+----+------+-----+---------+---------------+
 * Clock Loads column represents the clock pin loads (pin count). Internal cell leaf pins are not counted
 ** Non-Clock Loads column represents the non-clock pin loads (pin count)
