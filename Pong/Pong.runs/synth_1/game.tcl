@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Users/Yara2005/Pong/Pong.runs/synth_1/game.tcl"
+  variable script "C:/Users/Yara2005/PongGame-HDL/Pong/Pong.runs/synth_1/game.tcl"
   variable category "vivado_synth"
 }
 
@@ -70,35 +70,37 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param chipscope.maxJobs 4
+set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir C:/Users/Yara2005/Pong/Pong.cache/wt [current_project]
-set_property parent.project_path C:/Users/Yara2005/Pong/Pong.xpr [current_project]
+set_property webtalk.parent_dir C:/Users/Yara2005/PongGame-HDL/Pong/Pong.cache/wt [current_project]
+set_property parent.project_path C:/Users/Yara2005/PongGame-HDL/Pong/Pong.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part_repo_paths {C:/Users/Yara2005/AppData/Roaming/Xilinx/Vivado/2022.1/xhub/board_store/xilinx_board_store} [current_project]
 set_property board_part digilentinc.com:basys3:part0:1.2 [current_project]
-set_property ip_output_repo c:/Users/Yara2005/Pong/Pong.cache/ip [current_project]
+set_property ip_output_repo c:/Users/Yara2005/PongGame-HDL/Pong/Pong.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  C:/Users/Yara2005/Pong/Pong.srcs/sources_1/new/Ball.v
-  C:/Users/Yara2005/Downloads/Counter.v
   C:/Users/Yara2005/Downloads/Debouncer.v
   C:/Users/Yara2005/Downloads/Ex1_EdgeDetect.v
   C:/Users/Yara2005/Downloads/Ex2_PushbuttonDetect.v
-  C:/Users/Yara2005/Pong/Pong.srcs/sources_1/new/Paddle.v
-  C:/Users/Yara2005/Pong/Pong.srcs/sources_1/new/Score.v
-  C:/Users/Yara2005/Pong/Pong.srcs/sources_1/new/VGAControl.v
+  C:/Users/Yara2005/PongGame-HDL/Pong/Pong.srcs/sources_1/new/Ex4enable.v
+  C:/Users/Yara2005/PongGame-HDL/Pong/Pong.srcs/sources_1/new/Paddle.v
+  C:/Users/Yara2005/PongGame-HDL/Pong/Pong.srcs/sources_1/new/Score.v
+  C:/Users/Yara2005/PongGame-HDL/Pong/Pong.srcs/sources_1/new/VGAControl.v
   C:/Users/Yara2005/Downloads/clock_div-1.v
-  C:/Users/Yara2005/Pong/Pong.srcs/sources_1/new/segmentDecoder.v
+  C:/Users/Yara2005/PongGame-HDL/Pong/Pong.srcs/sources_1/new/clock_div.v
+  C:/Users/Yara2005/PongGame-HDL/Pong/Pong.srcs/sources_1/new/segmentDecoder.v
   C:/Users/Yara2005/Downloads/synchronizer.v
-  C:/Users/Yara2005/Pong/Pong.srcs/sources_1/new/game.v
+  C:/Users/Yara2005/PongGame-HDL/Pong/Pong.srcs/sources_1/new/game.v
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -109,9 +111,12 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
+read_xdc C:/Users/Yara2005/PongGame-HDL/Pong/Pong.srcs/constrs_1/new/Pong_Constraint.xdc
+set_property used_in_implementation false [get_files C:/Users/Yara2005/PongGame-HDL/Pong/Pong.srcs/constrs_1/new/Pong_Constraint.xdc]
+
 set_param ips.enableIPCacheLiteLoad 1
 
-read_checkpoint -auto_incremental -incremental C:/Users/Yara2005/Pong/Pong.srcs/utils_1/imports/synth_1/game.dcp
+read_checkpoint -auto_incremental -incremental C:/Users/Yara2005/PongGame-HDL/Pong/Pong.srcs/utils_1/imports/synth_1/game.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }

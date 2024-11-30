@@ -41,8 +41,8 @@ module VGAControl(
 
     wire [8:0] y_paddle1, y_paddle2;
 
-    Paddle paddle1(clk25MHz, reset, move_up1, move_down1, y_paddle1);
-    Paddle paddle2(clk25MHz, reset, move_up2, move_down2, y_paddle2);
+    Paddle paddle1(clk100MHz, reset, move_up1, move_down1, y_paddle1);
+    Paddle paddle2(clk100MHz, reset, move_up2, move_down2, y_paddle2);
 
     // Horizontal Counter Logic
     always @(posedge clk25MHz or posedge reset) begin
