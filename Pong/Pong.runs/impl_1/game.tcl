@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "C:/Users/Yara2005/PongGame-HDL/Pong/Pong.runs/impl_1/game.tcl"
+  variable script "C:/Users/kjaballah/PongGame-HDL/Pong/Pong.runs/impl_1/game.tcl"
   variable category "vivado_impl"
 }
 
@@ -126,21 +126,19 @@ set rc [catch {
   set_param xicom.use_bs_reader 1
 OPTRACE "create in-memory project" START { }
   create_project -in_memory -part xc7a35tcpg236-1
-  set_property board_part_repo_paths {C:/Users/Yara2005/AppData/Roaming/Xilinx/Vivado/2022.1/xhub/board_store/xilinx_board_store} [current_project]
-  set_property board_part digilentinc.com:basys3:part0:1.2 [current_project]
   set_property design_mode GateLvl [current_fileset]
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir C:/Users/Yara2005/PongGame-HDL/Pong/Pong.cache/wt [current_project]
-  set_property parent.project_path C:/Users/Yara2005/PongGame-HDL/Pong/Pong.xpr [current_project]
-  set_property ip_output_repo C:/Users/Yara2005/PongGame-HDL/Pong/Pong.cache/ip [current_project]
+  set_property webtalk.parent_dir C:/Users/kjaballah/PongGame-HDL/Pong/Pong.cache/wt [current_project]
+  set_property parent.project_path C:/Users/kjaballah/PongGame-HDL/Pong/Pong.xpr [current_project]
+  set_property ip_output_repo C:/Users/kjaballah/PongGame-HDL/Pong/Pong.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet C:/Users/Yara2005/PongGame-HDL/Pong/Pong.runs/synth_1/game.dcp
+  add_files -quiet C:/Users/kjaballah/PongGame-HDL/Pong/Pong.runs/synth_1/game.dcp
 OPTRACE "read constraints: implementation" START { }
-  read_xdc C:/Users/Yara2005/PongGame-HDL/Pong/Pong.srcs/constrs_1/new/Pong_Constraint.xdc
+  read_xdc C:/Users/kjaballah/PongGame-HDL/Pong/Pong.srcs/constrs_1/new/Pong_Constraint.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }

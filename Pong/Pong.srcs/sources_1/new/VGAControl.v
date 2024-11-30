@@ -28,12 +28,17 @@ module VGAControl(
     parameter H_DISPLAY = 640;
     parameter V_DISPLAY = 460;
     parameter BALL_SIZE = 20;
+    parameter BALL_RADUIS = 10;
     parameter PADDLE_WIDTH = 20;
     parameter PADDLE_HEIGHT = 120;
-
+    parameter DELAY_VALUE = 15;
+    
     reg [9:0] h_counter = 0;
     reg [9:0] v_counter = 0;
-
+    
+    reg [15:0] delay_counter; // Counter to make delay for resetting position 
+    reg delay_active;       //cpunter to make delay for resetting position 
+    
     reg [9:0] ball_x = H_DISPLAY / 2;
     reg [9:0] ball_y = V_DISPLAY / 2;
     reg ball_dir_x = 1; // 1: right, 0: left
@@ -77,52 +82,67 @@ module VGAControl(
             ball_dir_y <= 1;
             goal_player1 <= 0;
             goal_player2 <= 0;
+            delay_active <= 0;         // Reset delay flag
+            delay_counter <= 0;       // Reset delay counter
         end else if (h_counter == 0 && v_counter == 0) begin
             goal_player1 <= 0;
             goal_player2 <= 0;
 
-            // Check for paddle collision
-            if (ball_dir_x == 1 && ball_x + BALL_SIZE >= H_DISPLAY - PADDLE_WIDTH) begin
-                if (ball_y >= y_paddle2 && ball_y < y_paddle2 + PADDLE_HEIGHT)
-                    ball_dir_x <= 0; // Bounce off paddle
-                else begin
-                    goal_player1 <= 1; // Player 1 scores
-                    ball_x <= H_DISPLAY / 2;
-                    ball_y <= V_DISPLAY / 2;
-                    ball_dir_x <= 0; // Reset moving left
+            // If delay is not active, process ball movement and check for scoring
+            if (!delay_active) begin
+                // Check for paddle collision
+                if (ball_dir_x == 1 && ball_x + BALL_SIZE > H_DISPLAY - PADDLE_WIDTH) begin
+                    if (ball_y >= y_paddle2 && ball_y < y_paddle2 + PADDLE_HEIGHT)
+                        ball_dir_x <= 0; // Bounce off paddle
+                    else begin
+                        goal_player1 <= 1; // Player 1 scores
+                       
+                        delay_counter <= DELAY_VALUE;  // Start delay after goal
+                        delay_active <= 1;             // Activate delay
+                        ball_dir_x <= 0; // Reset moving left
+                    end
+                end else if (ball_dir_x == 0 && ball_x < PADDLE_WIDTH) begin
+                    if (ball_y >= y_paddle1 && ball_y < y_paddle1 + PADDLE_HEIGHT)
+                        ball_dir_x <= 1; // Bounce off paddle
+                    else begin
+                        goal_player2 <= 1; // Player 2 scores
+                        delay_counter <= DELAY_VALUE;  // Start delay after goal
+                        delay_active <= 1;             // Activate delay
+                        ball_dir_x <= 1; // Reset moving right
+                    end
+                end else begin
+                    // Update Ball X Position
+                    ball_x <= ball_dir_x ? ball_x + 2 : ball_x - 2;
                 end
-            end else if (ball_dir_x == 0 && ball_x <= PADDLE_WIDTH) begin
-                if (ball_y >= y_paddle1 && ball_y < y_paddle1 + PADDLE_HEIGHT)
-                    ball_dir_x <= 1; // Bounce off paddle
-                else begin
-                    goal_player2 <= 1; // Player 2 scores
-                    ball_x <= H_DISPLAY / 2;
-                    ball_y <= V_DISPLAY / 2;
-                    ball_dir_x <= 1; // Reset moving right
-                end
-            end else begin
-                // Update Ball X Position
-                ball_x <= ball_dir_x ? ball_x + 1 : ball_x - 1;
-            end
 
-            // Update Ball Y Position
-            if (ball_dir_y) begin
-                if (ball_y + BALL_SIZE < V_DISPLAY)
-                    ball_y <= ball_y + 1;
-                else
-                    ball_dir_y <= 0; // Bounce off bottom
+                // Update Ball Y Position
+                if (ball_dir_y) begin
+                    if (ball_y + BALL_SIZE < V_DISPLAY)
+                        ball_y <= ball_y + 2;
+                    else
+                        ball_dir_y <= 0; // Bounce off bottom
+                end else begin
+                    if (ball_y > 0)
+                        ball_y <= ball_y - 2;
+                    else
+                        ball_dir_y <= 1; // Bounce off top
+                end
             end else begin
-                if (ball_y > 0)
-                    ball_y <= ball_y - 1;
-                else
-                    ball_dir_y <= 1; // Bounce off top
+                // If delay is active, countdown the delay counter
+                if (delay_counter > 0) begin
+                    delay_counter <= delay_counter - 1; // Countdown
+                end else begin
+                    delay_active <= 0;       // Deactivate delay after countdown
+                     ball_x <= H_DISPLAY / 2;
+                     ball_y <= V_DISPLAY / 2;
+                end
             end
         end
     end
 
     wire display_area = (h_counter < H_DISPLAY) && (v_counter < V_DISPLAY);
     
- wire ball_area = (h_counter >= ball_x && h_counter < ball_x + BALL_SIZE && v_counter >= ball_y && v_counter < ball_y + BALL_SIZE);
+    wire ball_area = ( (h_counter-ball_x)*(h_counter-ball_x)+ (v_counter - ball_y) * (v_counter - ball_y) <= BALL_RADUIS * BALL_RADUIS);
 
     wire paddle1_area = (h_counter >= 0 && h_counter < PADDLE_WIDTH &&
                          v_counter >= y_paddle1 && v_counter < y_paddle1 + PADDLE_HEIGHT);

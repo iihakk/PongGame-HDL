@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date         : Sat Nov 30 15:00:14 2024
+| Date         : Sat Nov 30 17:00:00 2024
 | Host         : CSE-P07-2168-50 running 64-bit major release  (build 9200)
 | Command      : report_timing_summary -max_paths 10 -report_unconstrained -file game_timing_summary_routed.rpt -pb game_timing_summary_routed.pb -rpx game_timing_summary_routed.rpx -warn_on_violation
 | Design       : game
@@ -41,7 +41,8 @@ Timing Summary Report
 
 Rule       Severity          Description                  Violations  
 ---------  ----------------  ---------------------------  ----------  
-TIMING-17  Critical Warning  Non-clocked sequential cell  313         
+TIMING-17  Critical Warning  Non-clocked sequential cell  329         
+SYNTH-10   Warning           Wide multiplier              6           
 
 Note: This report is based on the most recent report_methodology run and may not be up-to-date. Run report_methodology on the current design for the latest report.
 
@@ -51,10 +52,10 @@ check_timing report
 
 Table of Contents
 -----------------
-1. checking no_clock (313)
+1. checking no_clock (329)
 2. checking constant_clock (0)
 3. checking pulse_width_clock (0)
-4. checking unconstrained_internal_endpoints (709)
+4. checking unconstrained_internal_endpoints (756)
 5. checking no_input_delay (5)
 6. checking no_output_delay (25)
 7. checking multiple_clock (0)
@@ -64,13 +65,13 @@ Table of Contents
 11. checking partial_output_delay (0)
 12. checking latch_loops (0)
 
-1. checking no_clock (313)
+1. checking no_clock (329)
 --------------------------
  There are 240 register/latch pins with no clock driven by root clock pin: clk (HIGH)
 
  There are 2 register/latch pins with no clock driven by root clock pin: decoder/cd/clk_out_reg/Q (HIGH)
 
- There are 43 register/latch pins with no clock driven by root clock pin: vga/clk25MHz_reg/Q (HIGH)
+ There are 59 register/latch pins with no clock driven by root clock pin: vga/clk25MHz_reg/Q (HIGH)
 
  There are 7 register/latch pins with no clock driven by root clock pin: vga/paddle1/e1/cd/clk_out_reg/Q (HIGH)
 
@@ -91,9 +92,9 @@ Table of Contents
  There are 0 register/latch pins which need pulse_width check
 
 
-4. checking unconstrained_internal_endpoints (709)
+4. checking unconstrained_internal_endpoints (756)
 --------------------------------------------------
- There are 709 pins that are not constrained for maximum delay. (HIGH)
+ There are 756 pins that are not constrained for maximum delay. (HIGH)
 
  There are 0 pins that are not constrained for maximum delay due to constant clock.
 
@@ -152,7 +153,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-        inf        0.000                      0                  734          inf        0.000                      0                  734           NA           NA                      NA                    NA  
+        inf        0.000                      0                  781          inf        0.000                      0                  781           NA           NA                      NA                    NA  
 
 
 There are no user specified timing constraints.
@@ -221,45 +222,459 @@ Path Group:  (none)
 From Clock:  
   To Clock:  
 
-Max Delay           734 Endpoints
-Min Delay           734 Endpoints
+Max Delay           781 Endpoints
+Min Delay           781 Endpoints
 --------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 vga/paddle2/y_reg[4]/C
-                            (rising edge-triggered cell FDPE)
+  Source:                 vga/v_counter_reg[6]/C
+                            (rising edge-triggered cell FDCE)
   Destination:            green[3]
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        12.134ns  (logic 5.449ns (44.910%)  route 6.685ns (55.090%))
-  Logic Levels:           8  (CARRY4=2 FDPE=1 LUT2=1 LUT6=3 OBUF=1)
+  Data Path Delay:        25.094ns  (logic 12.843ns (51.181%)  route 12.251ns (48.819%))
+  Logic Levels:           16  (CARRY4=6 DSP48E1=2 FDCE=1 LUT2=3 LUT6=3 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X2Y25          FDPE                         0.000     0.000 r  vga/paddle2/y_reg[4]/C
-    SLICE_X2Y25          FDPE (Prop_fdpe_C_Q)         0.518     0.518 f  vga/paddle2/y_reg[4]/Q
-                         net (fo=15, routed)          1.042     1.560    vga/paddle2/y_paddle2[4]
-    SLICE_X3Y23          LUT2 (Prop_lut2_I1_O)        0.124     1.684 r  vga/paddle2/paddle2_area0_carry_i_9/O
-                         net (fo=4, routed)           0.435     2.119    vga/paddle2/paddle2_area0_carry_i_9_n_0
-    SLICE_X2Y24          LUT6 (Prop_lut6_I2_O)        0.124     2.243 r  vga/paddle2/paddle2_area0_carry_i_1/O
-                         net (fo=1, routed)           0.565     2.808    vga/paddle2_n_8
-    SLICE_X3Y24          CARRY4 (Prop_carry4_DI[3]_CO[3])
-                                                      0.385     3.193 r  vga/paddle2_area0_carry/CO[3]
-                         net (fo=1, routed)           0.009     3.202    vga/paddle2_area0_carry_n_0
-    SLICE_X3Y25          CARRY4 (Prop_carry4_CI_CO[0])
-                                                      0.271     3.473 f  vga/paddle2_area0_carry__0/CO[0]
-                         net (fo=2, routed)           1.016     4.488    vga/paddle2/CO[0]
-    SLICE_X2Y27          LUT6 (Prop_lut6_I2_O)        0.373     4.861 r  vga/paddle2/green_OBUF[3]_inst_i_3/O
-                         net (fo=1, routed)           0.793     5.654    vga/paddle1/green[0]_1
-    SLICE_X2Y28          LUT6 (Prop_lut6_I4_O)        0.124     5.778 r  vga/paddle1/green_OBUF[3]_inst_i_1/O
-                         net (fo=4, routed)           2.826     8.604    green_OBUF[0]
-    D17                  OBUF (Prop_obuf_I_O)         3.530    12.134 r  green_OBUF[3]_inst/O
-                         net (fo=0)                   0.000    12.134    green[3]
+    SLICE_X7Y23          FDCE                         0.000     0.000 r  vga/v_counter_reg[6]/C
+    SLICE_X7Y23          FDCE (Prop_fdce_C_Q)         0.456     0.456 r  vga/v_counter_reg[6]/Q
+                         net (fo=18, routed)          2.011     2.467    vga/v_counter_reg_n_0_[6]
+    SLICE_X8Y19          LUT2 (Prop_lut2_I0_O)        0.124     2.591 r  vga/ball_area2_carry__0_i_2/O
+                         net (fo=1, routed)           0.000     2.591    vga/ball_area2_carry__0_i_2_n_0
+    SLICE_X8Y19          CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380     2.971 r  vga/ball_area2_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     2.971    vga/ball_area2_carry__0_n_0
+    SLICE_X8Y20          CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239     3.210 r  vga/ball_area2_carry__1/O[2]
+                         net (fo=58, routed)          2.294     5.504    vga/ball_area2_carry__1_n_5
+    DSP48_X0Y4           DSP48E1 (Prop_dsp48e1_B[10]_PCOUT[47])
+                                                      4.028     9.532 r  vga/ball_area1__0/PCOUT[47]
+                         net (fo=1, routed)           0.002     9.534    vga/ball_area1__0_n_106
+    DSP48_X0Y5           DSP48E1 (Prop_dsp48e1_PCIN[47]_P[3])
+                                                      1.518    11.052 r  vga/ball_area1__1/P[3]
+                         net (fo=2, routed)           1.380    12.432    vga/ball_area1__1_n_102
+    SLICE_X12Y16         LUT2 (Prop_lut2_I0_O)        0.124    12.556 r  vga/ball_area1_carry__0_i_4/O
+                         net (fo=1, routed)           0.000    12.556    vga/ball_area1_carry__0_i_4_n_0
+    SLICE_X12Y16         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    13.069 r  vga/ball_area1_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    13.069    vga/ball_area1_carry__0_n_0
+    SLICE_X12Y17         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219    13.288 r  vga/ball_area1_carry__1/O[0]
+                         net (fo=1, routed)           0.968    14.255    vga/ball_area1_carry__1_n_7
+    SLICE_X11Y18         LUT2 (Prop_lut2_I1_O)        0.295    14.550 r  vga/ball_area0_carry__5_i_4/O
+                         net (fo=1, routed)           0.000    14.550    vga/ball_area0_carry__5_i_4_n_0
+    SLICE_X11Y18         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    15.082 r  vga/ball_area0_carry__5/CO[3]
+                         net (fo=1, routed)           0.000    15.082    vga/ball_area0_carry__5_n_0
+    SLICE_X11Y19         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334    15.416 r  vga/ball_area0_carry__6/O[1]
+                         net (fo=1, routed)           0.825    16.241    vga/ball_area0[29]
+    SLICE_X10Y17         LUT6 (Prop_lut6_I2_O)        0.303    16.544 r  vga/green_OBUF[3]_inst_i_7/O
+                         net (fo=1, routed)           0.806    17.350    vga/green_OBUF[3]_inst_i_7_n_0
+    SLICE_X10Y15         LUT6 (Prop_lut6_I0_O)        0.124    17.474 r  vga/green_OBUF[3]_inst_i_3/O
+                         net (fo=2, routed)           0.602    18.076    vga/green_OBUF[3]_inst_i_3_n_0
+    SLICE_X8Y17          LUT6 (Prop_lut6_I2_O)        0.124    18.200 r  vga/green_OBUF[3]_inst_i_1/O
+                         net (fo=4, routed)           3.364    21.564    green_OBUF[0]
+    D17                  OBUF (Prop_obuf_I_O)         3.530    25.094 r  green_OBUF[3]_inst/O
+                         net (fo=0)                   0.000    25.094    green[3]
     D17                                                               r  green[3] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 vga/v_counter_reg[6]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            green[1]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        24.591ns  (logic 12.818ns (52.128%)  route 11.772ns (47.872%))
+  Logic Levels:           16  (CARRY4=6 DSP48E1=2 FDCE=1 LUT2=3 LUT6=3 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X7Y23          FDCE                         0.000     0.000 r  vga/v_counter_reg[6]/C
+    SLICE_X7Y23          FDCE (Prop_fdce_C_Q)         0.456     0.456 r  vga/v_counter_reg[6]/Q
+                         net (fo=18, routed)          2.011     2.467    vga/v_counter_reg_n_0_[6]
+    SLICE_X8Y19          LUT2 (Prop_lut2_I0_O)        0.124     2.591 r  vga/ball_area2_carry__0_i_2/O
+                         net (fo=1, routed)           0.000     2.591    vga/ball_area2_carry__0_i_2_n_0
+    SLICE_X8Y19          CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380     2.971 r  vga/ball_area2_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     2.971    vga/ball_area2_carry__0_n_0
+    SLICE_X8Y20          CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239     3.210 r  vga/ball_area2_carry__1/O[2]
+                         net (fo=58, routed)          2.294     5.504    vga/ball_area2_carry__1_n_5
+    DSP48_X0Y4           DSP48E1 (Prop_dsp48e1_B[10]_PCOUT[47])
+                                                      4.028     9.532 r  vga/ball_area1__0/PCOUT[47]
+                         net (fo=1, routed)           0.002     9.534    vga/ball_area1__0_n_106
+    DSP48_X0Y5           DSP48E1 (Prop_dsp48e1_PCIN[47]_P[3])
+                                                      1.518    11.052 r  vga/ball_area1__1/P[3]
+                         net (fo=2, routed)           1.380    12.432    vga/ball_area1__1_n_102
+    SLICE_X12Y16         LUT2 (Prop_lut2_I0_O)        0.124    12.556 r  vga/ball_area1_carry__0_i_4/O
+                         net (fo=1, routed)           0.000    12.556    vga/ball_area1_carry__0_i_4_n_0
+    SLICE_X12Y16         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    13.069 r  vga/ball_area1_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    13.069    vga/ball_area1_carry__0_n_0
+    SLICE_X12Y17         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219    13.288 r  vga/ball_area1_carry__1/O[0]
+                         net (fo=1, routed)           0.968    14.255    vga/ball_area1_carry__1_n_7
+    SLICE_X11Y18         LUT2 (Prop_lut2_I1_O)        0.295    14.550 r  vga/ball_area0_carry__5_i_4/O
+                         net (fo=1, routed)           0.000    14.550    vga/ball_area0_carry__5_i_4_n_0
+    SLICE_X11Y18         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    15.082 r  vga/ball_area0_carry__5/CO[3]
+                         net (fo=1, routed)           0.000    15.082    vga/ball_area0_carry__5_n_0
+    SLICE_X11Y19         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334    15.416 r  vga/ball_area0_carry__6/O[1]
+                         net (fo=1, routed)           0.825    16.241    vga/ball_area0[29]
+    SLICE_X10Y17         LUT6 (Prop_lut6_I2_O)        0.303    16.544 r  vga/green_OBUF[3]_inst_i_7/O
+                         net (fo=1, routed)           0.806    17.350    vga/green_OBUF[3]_inst_i_7_n_0
+    SLICE_X10Y15         LUT6 (Prop_lut6_I0_O)        0.124    17.474 r  vga/green_OBUF[3]_inst_i_3/O
+                         net (fo=2, routed)           0.602    18.076    vga/green_OBUF[3]_inst_i_3_n_0
+    SLICE_X8Y17          LUT6 (Prop_lut6_I2_O)        0.124    18.200 r  vga/green_OBUF[3]_inst_i_1/O
+                         net (fo=4, routed)           2.885    21.085    green_OBUF[0]
+    H17                  OBUF (Prop_obuf_I_O)         3.505    24.591 r  green_OBUF[1]_inst/O
+                         net (fo=0)                   0.000    24.591    green[1]
+    H17                                                               r  green[1] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 vga/v_counter_reg[6]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            blue[3]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        24.548ns  (logic 12.838ns (52.296%)  route 11.710ns (47.704%))
+  Logic Levels:           16  (CARRY4=6 DSP48E1=2 FDCE=1 LUT2=3 LUT6=3 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X7Y23          FDCE                         0.000     0.000 r  vga/v_counter_reg[6]/C
+    SLICE_X7Y23          FDCE (Prop_fdce_C_Q)         0.456     0.456 r  vga/v_counter_reg[6]/Q
+                         net (fo=18, routed)          2.011     2.467    vga/v_counter_reg_n_0_[6]
+    SLICE_X8Y19          LUT2 (Prop_lut2_I0_O)        0.124     2.591 r  vga/ball_area2_carry__0_i_2/O
+                         net (fo=1, routed)           0.000     2.591    vga/ball_area2_carry__0_i_2_n_0
+    SLICE_X8Y19          CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380     2.971 r  vga/ball_area2_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     2.971    vga/ball_area2_carry__0_n_0
+    SLICE_X8Y20          CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239     3.210 r  vga/ball_area2_carry__1/O[2]
+                         net (fo=58, routed)          2.294     5.504    vga/ball_area2_carry__1_n_5
+    DSP48_X0Y4           DSP48E1 (Prop_dsp48e1_B[10]_PCOUT[47])
+                                                      4.028     9.532 r  vga/ball_area1__0/PCOUT[47]
+                         net (fo=1, routed)           0.002     9.534    vga/ball_area1__0_n_106
+    DSP48_X0Y5           DSP48E1 (Prop_dsp48e1_PCIN[47]_P[3])
+                                                      1.518    11.052 r  vga/ball_area1__1/P[3]
+                         net (fo=2, routed)           1.380    12.432    vga/ball_area1__1_n_102
+    SLICE_X12Y16         LUT2 (Prop_lut2_I0_O)        0.124    12.556 r  vga/ball_area1_carry__0_i_4/O
+                         net (fo=1, routed)           0.000    12.556    vga/ball_area1_carry__0_i_4_n_0
+    SLICE_X12Y16         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    13.069 r  vga/ball_area1_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    13.069    vga/ball_area1_carry__0_n_0
+    SLICE_X12Y17         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219    13.288 r  vga/ball_area1_carry__1/O[0]
+                         net (fo=1, routed)           0.968    14.255    vga/ball_area1_carry__1_n_7
+    SLICE_X11Y18         LUT2 (Prop_lut2_I1_O)        0.295    14.550 r  vga/ball_area0_carry__5_i_4/O
+                         net (fo=1, routed)           0.000    14.550    vga/ball_area0_carry__5_i_4_n_0
+    SLICE_X11Y18         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    15.082 r  vga/ball_area0_carry__5/CO[3]
+                         net (fo=1, routed)           0.000    15.082    vga/ball_area0_carry__5_n_0
+    SLICE_X11Y19         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334    15.416 r  vga/ball_area0_carry__6/O[1]
+                         net (fo=1, routed)           0.825    16.241    vga/ball_area0[29]
+    SLICE_X10Y17         LUT6 (Prop_lut6_I2_O)        0.303    16.544 r  vga/green_OBUF[3]_inst_i_7/O
+                         net (fo=1, routed)           0.806    17.350    vga/green_OBUF[3]_inst_i_7_n_0
+    SLICE_X10Y15         LUT6 (Prop_lut6_I0_O)        0.124    17.474 r  vga/green_OBUF[3]_inst_i_3/O
+                         net (fo=2, routed)           0.591    18.065    vga/green_OBUF[3]_inst_i_3_n_0
+    SLICE_X8Y17          LUT6 (Prop_lut6_I2_O)        0.124    18.189 r  vga/blue_OBUF[3]_inst_i_1/O
+                         net (fo=4, routed)           2.834    21.023    blue_OBUF[0]
+    J18                  OBUF (Prop_obuf_I_O)         3.525    24.548 r  blue_OBUF[3]_inst/O
+                         net (fo=0)                   0.000    24.548    blue[3]
+    J18                                                               r  blue[3] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 vga/v_counter_reg[6]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            green[2]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        24.463ns  (logic 12.842ns (52.496%)  route 11.621ns (47.504%))
+  Logic Levels:           16  (CARRY4=6 DSP48E1=2 FDCE=1 LUT2=3 LUT6=3 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X7Y23          FDCE                         0.000     0.000 r  vga/v_counter_reg[6]/C
+    SLICE_X7Y23          FDCE (Prop_fdce_C_Q)         0.456     0.456 r  vga/v_counter_reg[6]/Q
+                         net (fo=18, routed)          2.011     2.467    vga/v_counter_reg_n_0_[6]
+    SLICE_X8Y19          LUT2 (Prop_lut2_I0_O)        0.124     2.591 r  vga/ball_area2_carry__0_i_2/O
+                         net (fo=1, routed)           0.000     2.591    vga/ball_area2_carry__0_i_2_n_0
+    SLICE_X8Y19          CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380     2.971 r  vga/ball_area2_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     2.971    vga/ball_area2_carry__0_n_0
+    SLICE_X8Y20          CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239     3.210 r  vga/ball_area2_carry__1/O[2]
+                         net (fo=58, routed)          2.294     5.504    vga/ball_area2_carry__1_n_5
+    DSP48_X0Y4           DSP48E1 (Prop_dsp48e1_B[10]_PCOUT[47])
+                                                      4.028     9.532 r  vga/ball_area1__0/PCOUT[47]
+                         net (fo=1, routed)           0.002     9.534    vga/ball_area1__0_n_106
+    DSP48_X0Y5           DSP48E1 (Prop_dsp48e1_PCIN[47]_P[3])
+                                                      1.518    11.052 r  vga/ball_area1__1/P[3]
+                         net (fo=2, routed)           1.380    12.432    vga/ball_area1__1_n_102
+    SLICE_X12Y16         LUT2 (Prop_lut2_I0_O)        0.124    12.556 r  vga/ball_area1_carry__0_i_4/O
+                         net (fo=1, routed)           0.000    12.556    vga/ball_area1_carry__0_i_4_n_0
+    SLICE_X12Y16         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    13.069 r  vga/ball_area1_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    13.069    vga/ball_area1_carry__0_n_0
+    SLICE_X12Y17         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219    13.288 r  vga/ball_area1_carry__1/O[0]
+                         net (fo=1, routed)           0.968    14.255    vga/ball_area1_carry__1_n_7
+    SLICE_X11Y18         LUT2 (Prop_lut2_I1_O)        0.295    14.550 r  vga/ball_area0_carry__5_i_4/O
+                         net (fo=1, routed)           0.000    14.550    vga/ball_area0_carry__5_i_4_n_0
+    SLICE_X11Y18         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    15.082 r  vga/ball_area0_carry__5/CO[3]
+                         net (fo=1, routed)           0.000    15.082    vga/ball_area0_carry__5_n_0
+    SLICE_X11Y19         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334    15.416 r  vga/ball_area0_carry__6/O[1]
+                         net (fo=1, routed)           0.825    16.241    vga/ball_area0[29]
+    SLICE_X10Y17         LUT6 (Prop_lut6_I2_O)        0.303    16.544 r  vga/green_OBUF[3]_inst_i_7/O
+                         net (fo=1, routed)           0.806    17.350    vga/green_OBUF[3]_inst_i_7_n_0
+    SLICE_X10Y15         LUT6 (Prop_lut6_I0_O)        0.124    17.474 r  vga/green_OBUF[3]_inst_i_3/O
+                         net (fo=2, routed)           0.602    18.076    vga/green_OBUF[3]_inst_i_3_n_0
+    SLICE_X8Y17          LUT6 (Prop_lut6_I2_O)        0.124    18.200 r  vga/green_OBUF[3]_inst_i_1/O
+                         net (fo=4, routed)           2.734    20.934    green_OBUF[0]
+    G17                  OBUF (Prop_obuf_I_O)         3.529    24.463 r  green_OBUF[2]_inst/O
+                         net (fo=0)                   0.000    24.463    green[2]
+    G17                                                               r  green[2] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 vga/v_counter_reg[6]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            blue[1]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        24.386ns  (logic 12.816ns (52.557%)  route 11.569ns (47.443%))
+  Logic Levels:           16  (CARRY4=6 DSP48E1=2 FDCE=1 LUT2=3 LUT6=3 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X7Y23          FDCE                         0.000     0.000 r  vga/v_counter_reg[6]/C
+    SLICE_X7Y23          FDCE (Prop_fdce_C_Q)         0.456     0.456 r  vga/v_counter_reg[6]/Q
+                         net (fo=18, routed)          2.011     2.467    vga/v_counter_reg_n_0_[6]
+    SLICE_X8Y19          LUT2 (Prop_lut2_I0_O)        0.124     2.591 r  vga/ball_area2_carry__0_i_2/O
+                         net (fo=1, routed)           0.000     2.591    vga/ball_area2_carry__0_i_2_n_0
+    SLICE_X8Y19          CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380     2.971 r  vga/ball_area2_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     2.971    vga/ball_area2_carry__0_n_0
+    SLICE_X8Y20          CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239     3.210 r  vga/ball_area2_carry__1/O[2]
+                         net (fo=58, routed)          2.294     5.504    vga/ball_area2_carry__1_n_5
+    DSP48_X0Y4           DSP48E1 (Prop_dsp48e1_B[10]_PCOUT[47])
+                                                      4.028     9.532 r  vga/ball_area1__0/PCOUT[47]
+                         net (fo=1, routed)           0.002     9.534    vga/ball_area1__0_n_106
+    DSP48_X0Y5           DSP48E1 (Prop_dsp48e1_PCIN[47]_P[3])
+                                                      1.518    11.052 r  vga/ball_area1__1/P[3]
+                         net (fo=2, routed)           1.380    12.432    vga/ball_area1__1_n_102
+    SLICE_X12Y16         LUT2 (Prop_lut2_I0_O)        0.124    12.556 r  vga/ball_area1_carry__0_i_4/O
+                         net (fo=1, routed)           0.000    12.556    vga/ball_area1_carry__0_i_4_n_0
+    SLICE_X12Y16         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    13.069 r  vga/ball_area1_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    13.069    vga/ball_area1_carry__0_n_0
+    SLICE_X12Y17         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219    13.288 r  vga/ball_area1_carry__1/O[0]
+                         net (fo=1, routed)           0.968    14.255    vga/ball_area1_carry__1_n_7
+    SLICE_X11Y18         LUT2 (Prop_lut2_I1_O)        0.295    14.550 r  vga/ball_area0_carry__5_i_4/O
+                         net (fo=1, routed)           0.000    14.550    vga/ball_area0_carry__5_i_4_n_0
+    SLICE_X11Y18         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    15.082 r  vga/ball_area0_carry__5/CO[3]
+                         net (fo=1, routed)           0.000    15.082    vga/ball_area0_carry__5_n_0
+    SLICE_X11Y19         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334    15.416 r  vga/ball_area0_carry__6/O[1]
+                         net (fo=1, routed)           0.825    16.241    vga/ball_area0[29]
+    SLICE_X10Y17         LUT6 (Prop_lut6_I2_O)        0.303    16.544 r  vga/green_OBUF[3]_inst_i_7/O
+                         net (fo=1, routed)           0.806    17.350    vga/green_OBUF[3]_inst_i_7_n_0
+    SLICE_X10Y15         LUT6 (Prop_lut6_I0_O)        0.124    17.474 r  vga/green_OBUF[3]_inst_i_3/O
+                         net (fo=2, routed)           0.591    18.065    vga/green_OBUF[3]_inst_i_3_n_0
+    SLICE_X8Y17          LUT6 (Prop_lut6_I2_O)        0.124    18.189 r  vga/blue_OBUF[3]_inst_i_1/O
+                         net (fo=4, routed)           2.693    20.882    blue_OBUF[0]
+    L18                  OBUF (Prop_obuf_I_O)         3.503    24.386 r  blue_OBUF[1]_inst/O
+                         net (fo=0)                   0.000    24.386    blue[1]
+    L18                                                               r  blue[1] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 vga/v_counter_reg[6]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            blue[2]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        24.250ns  (logic 12.832ns (52.914%)  route 11.418ns (47.086%))
+  Logic Levels:           16  (CARRY4=6 DSP48E1=2 FDCE=1 LUT2=3 LUT6=3 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X7Y23          FDCE                         0.000     0.000 r  vga/v_counter_reg[6]/C
+    SLICE_X7Y23          FDCE (Prop_fdce_C_Q)         0.456     0.456 r  vga/v_counter_reg[6]/Q
+                         net (fo=18, routed)          2.011     2.467    vga/v_counter_reg_n_0_[6]
+    SLICE_X8Y19          LUT2 (Prop_lut2_I0_O)        0.124     2.591 r  vga/ball_area2_carry__0_i_2/O
+                         net (fo=1, routed)           0.000     2.591    vga/ball_area2_carry__0_i_2_n_0
+    SLICE_X8Y19          CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380     2.971 r  vga/ball_area2_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     2.971    vga/ball_area2_carry__0_n_0
+    SLICE_X8Y20          CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239     3.210 r  vga/ball_area2_carry__1/O[2]
+                         net (fo=58, routed)          2.294     5.504    vga/ball_area2_carry__1_n_5
+    DSP48_X0Y4           DSP48E1 (Prop_dsp48e1_B[10]_PCOUT[47])
+                                                      4.028     9.532 r  vga/ball_area1__0/PCOUT[47]
+                         net (fo=1, routed)           0.002     9.534    vga/ball_area1__0_n_106
+    DSP48_X0Y5           DSP48E1 (Prop_dsp48e1_PCIN[47]_P[3])
+                                                      1.518    11.052 r  vga/ball_area1__1/P[3]
+                         net (fo=2, routed)           1.380    12.432    vga/ball_area1__1_n_102
+    SLICE_X12Y16         LUT2 (Prop_lut2_I0_O)        0.124    12.556 r  vga/ball_area1_carry__0_i_4/O
+                         net (fo=1, routed)           0.000    12.556    vga/ball_area1_carry__0_i_4_n_0
+    SLICE_X12Y16         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    13.069 r  vga/ball_area1_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    13.069    vga/ball_area1_carry__0_n_0
+    SLICE_X12Y17         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219    13.288 r  vga/ball_area1_carry__1/O[0]
+                         net (fo=1, routed)           0.968    14.255    vga/ball_area1_carry__1_n_7
+    SLICE_X11Y18         LUT2 (Prop_lut2_I1_O)        0.295    14.550 r  vga/ball_area0_carry__5_i_4/O
+                         net (fo=1, routed)           0.000    14.550    vga/ball_area0_carry__5_i_4_n_0
+    SLICE_X11Y18         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    15.082 r  vga/ball_area0_carry__5/CO[3]
+                         net (fo=1, routed)           0.000    15.082    vga/ball_area0_carry__5_n_0
+    SLICE_X11Y19         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334    15.416 r  vga/ball_area0_carry__6/O[1]
+                         net (fo=1, routed)           0.825    16.241    vga/ball_area0[29]
+    SLICE_X10Y17         LUT6 (Prop_lut6_I2_O)        0.303    16.544 r  vga/green_OBUF[3]_inst_i_7/O
+                         net (fo=1, routed)           0.806    17.350    vga/green_OBUF[3]_inst_i_7_n_0
+    SLICE_X10Y15         LUT6 (Prop_lut6_I0_O)        0.124    17.474 r  vga/green_OBUF[3]_inst_i_3/O
+                         net (fo=2, routed)           0.591    18.065    vga/green_OBUF[3]_inst_i_3_n_0
+    SLICE_X8Y17          LUT6 (Prop_lut6_I2_O)        0.124    18.189 r  vga/blue_OBUF[3]_inst_i_1/O
+                         net (fo=4, routed)           2.542    20.731    blue_OBUF[0]
+    K18                  OBUF (Prop_obuf_I_O)         3.519    24.250 r  blue_OBUF[2]_inst/O
+                         net (fo=0)                   0.000    24.250    blue[2]
+    K18                                                               r  blue[2] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 vga/v_counter_reg[6]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            green[0]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        24.162ns  (logic 12.834ns (53.116%)  route 11.328ns (46.884%))
+  Logic Levels:           16  (CARRY4=6 DSP48E1=2 FDCE=1 LUT2=3 LUT6=3 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X7Y23          FDCE                         0.000     0.000 r  vga/v_counter_reg[6]/C
+    SLICE_X7Y23          FDCE (Prop_fdce_C_Q)         0.456     0.456 r  vga/v_counter_reg[6]/Q
+                         net (fo=18, routed)          2.011     2.467    vga/v_counter_reg_n_0_[6]
+    SLICE_X8Y19          LUT2 (Prop_lut2_I0_O)        0.124     2.591 r  vga/ball_area2_carry__0_i_2/O
+                         net (fo=1, routed)           0.000     2.591    vga/ball_area2_carry__0_i_2_n_0
+    SLICE_X8Y19          CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380     2.971 r  vga/ball_area2_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     2.971    vga/ball_area2_carry__0_n_0
+    SLICE_X8Y20          CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239     3.210 r  vga/ball_area2_carry__1/O[2]
+                         net (fo=58, routed)          2.294     5.504    vga/ball_area2_carry__1_n_5
+    DSP48_X0Y4           DSP48E1 (Prop_dsp48e1_B[10]_PCOUT[47])
+                                                      4.028     9.532 r  vga/ball_area1__0/PCOUT[47]
+                         net (fo=1, routed)           0.002     9.534    vga/ball_area1__0_n_106
+    DSP48_X0Y5           DSP48E1 (Prop_dsp48e1_PCIN[47]_P[3])
+                                                      1.518    11.052 r  vga/ball_area1__1/P[3]
+                         net (fo=2, routed)           1.380    12.432    vga/ball_area1__1_n_102
+    SLICE_X12Y16         LUT2 (Prop_lut2_I0_O)        0.124    12.556 r  vga/ball_area1_carry__0_i_4/O
+                         net (fo=1, routed)           0.000    12.556    vga/ball_area1_carry__0_i_4_n_0
+    SLICE_X12Y16         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    13.069 r  vga/ball_area1_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    13.069    vga/ball_area1_carry__0_n_0
+    SLICE_X12Y17         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219    13.288 r  vga/ball_area1_carry__1/O[0]
+                         net (fo=1, routed)           0.968    14.255    vga/ball_area1_carry__1_n_7
+    SLICE_X11Y18         LUT2 (Prop_lut2_I1_O)        0.295    14.550 r  vga/ball_area0_carry__5_i_4/O
+                         net (fo=1, routed)           0.000    14.550    vga/ball_area0_carry__5_i_4_n_0
+    SLICE_X11Y18         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    15.082 r  vga/ball_area0_carry__5/CO[3]
+                         net (fo=1, routed)           0.000    15.082    vga/ball_area0_carry__5_n_0
+    SLICE_X11Y19         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334    15.416 r  vga/ball_area0_carry__6/O[1]
+                         net (fo=1, routed)           0.825    16.241    vga/ball_area0[29]
+    SLICE_X10Y17         LUT6 (Prop_lut6_I2_O)        0.303    16.544 r  vga/green_OBUF[3]_inst_i_7/O
+                         net (fo=1, routed)           0.806    17.350    vga/green_OBUF[3]_inst_i_7_n_0
+    SLICE_X10Y15         LUT6 (Prop_lut6_I0_O)        0.124    17.474 r  vga/green_OBUF[3]_inst_i_3/O
+                         net (fo=2, routed)           0.602    18.076    vga/green_OBUF[3]_inst_i_3_n_0
+    SLICE_X8Y17          LUT6 (Prop_lut6_I2_O)        0.124    18.200 r  vga/green_OBUF[3]_inst_i_1/O
+                         net (fo=4, routed)           2.441    20.641    green_OBUF[0]
+    J17                  OBUF (Prop_obuf_I_O)         3.521    24.162 r  green_OBUF[0]_inst/O
+                         net (fo=0)                   0.000    24.162    green[0]
+    J17                                                               r  green[0] (OUT)
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 vga/v_counter_reg[6]/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            blue[0]
+                            (output port)
+  Path Group:             (none)
+  Path Type:              Max at Slow Process Corner
+  Data Path Delay:        24.064ns  (logic 12.808ns (53.226%)  route 11.256ns (46.774%))
+  Logic Levels:           16  (CARRY4=6 DSP48E1=2 FDCE=1 LUT2=3 LUT6=3 OBUF=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X7Y23          FDCE                         0.000     0.000 r  vga/v_counter_reg[6]/C
+    SLICE_X7Y23          FDCE (Prop_fdce_C_Q)         0.456     0.456 r  vga/v_counter_reg[6]/Q
+                         net (fo=18, routed)          2.011     2.467    vga/v_counter_reg_n_0_[6]
+    SLICE_X8Y19          LUT2 (Prop_lut2_I0_O)        0.124     2.591 r  vga/ball_area2_carry__0_i_2/O
+                         net (fo=1, routed)           0.000     2.591    vga/ball_area2_carry__0_i_2_n_0
+    SLICE_X8Y19          CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380     2.971 r  vga/ball_area2_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     2.971    vga/ball_area2_carry__0_n_0
+    SLICE_X8Y20          CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239     3.210 r  vga/ball_area2_carry__1/O[2]
+                         net (fo=58, routed)          2.294     5.504    vga/ball_area2_carry__1_n_5
+    DSP48_X0Y4           DSP48E1 (Prop_dsp48e1_B[10]_PCOUT[47])
+                                                      4.028     9.532 r  vga/ball_area1__0/PCOUT[47]
+                         net (fo=1, routed)           0.002     9.534    vga/ball_area1__0_n_106
+    DSP48_X0Y5           DSP48E1 (Prop_dsp48e1_PCIN[47]_P[3])
+                                                      1.518    11.052 r  vga/ball_area1__1/P[3]
+                         net (fo=2, routed)           1.380    12.432    vga/ball_area1__1_n_102
+    SLICE_X12Y16         LUT2 (Prop_lut2_I0_O)        0.124    12.556 r  vga/ball_area1_carry__0_i_4/O
+                         net (fo=1, routed)           0.000    12.556    vga/ball_area1_carry__0_i_4_n_0
+    SLICE_X12Y16         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    13.069 r  vga/ball_area1_carry__0/CO[3]
+                         net (fo=1, routed)           0.000    13.069    vga/ball_area1_carry__0_n_0
+    SLICE_X12Y17         CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.219    13.288 r  vga/ball_area1_carry__1/O[0]
+                         net (fo=1, routed)           0.968    14.255    vga/ball_area1_carry__1_n_7
+    SLICE_X11Y18         LUT2 (Prop_lut2_I1_O)        0.295    14.550 r  vga/ball_area0_carry__5_i_4/O
+                         net (fo=1, routed)           0.000    14.550    vga/ball_area0_carry__5_i_4_n_0
+    SLICE_X11Y18         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.532    15.082 r  vga/ball_area0_carry__5/CO[3]
+                         net (fo=1, routed)           0.000    15.082    vga/ball_area0_carry__5_n_0
+    SLICE_X11Y19         CARRY4 (Prop_carry4_CI_O[1])
+                                                      0.334    15.416 r  vga/ball_area0_carry__6/O[1]
+                         net (fo=1, routed)           0.825    16.241    vga/ball_area0[29]
+    SLICE_X10Y17         LUT6 (Prop_lut6_I2_O)        0.303    16.544 r  vga/green_OBUF[3]_inst_i_7/O
+                         net (fo=1, routed)           0.806    17.350    vga/green_OBUF[3]_inst_i_7_n_0
+    SLICE_X10Y15         LUT6 (Prop_lut6_I0_O)        0.124    17.474 r  vga/green_OBUF[3]_inst_i_3/O
+                         net (fo=2, routed)           0.591    18.065    vga/green_OBUF[3]_inst_i_3_n_0
+    SLICE_X8Y17          LUT6 (Prop_lut6_I2_O)        0.124    18.189 r  vga/blue_OBUF[3]_inst_i_1/O
+                         net (fo=4, routed)           2.380    20.569    blue_OBUF[0]
+    N18                  OBUF (Prop_obuf_I_O)         3.495    24.064 r  blue_OBUF[0]_inst/O
+                         net (fo=0)                   0.000    24.064    blue[0]
+    N18                                                               r  blue[0] (OUT)
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
@@ -269,27 +684,30 @@ Slack:                    inf
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        11.879ns  (logic 5.396ns (45.429%)  route 6.482ns (54.571%))
-  Logic Levels:           7  (CARRY4=1 FDCE=1 LUT4=1 LUT5=1 LUT6=2 OBUF=1)
+  Data Path Delay:        12.223ns  (logic 5.622ns (45.996%)  route 6.601ns (54.004%))
+  Logic Levels:           8  (CARRY4=2 FDCE=1 LUT2=1 LUT6=3 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X6Y19          FDCE                         0.000     0.000 r  vga/paddle1/y_reg[3]/C
-    SLICE_X6Y19          FDCE (Prop_fdce_C_Q)         0.518     0.518 r  vga/paddle1/y_reg[3]/Q
-                         net (fo=18, routed)          1.032     1.550    vga/paddle1/y_paddle1[3]
-    SLICE_X7Y21          LUT4 (Prop_lut4_I1_O)        0.152     1.702 f  vga/paddle1/paddle1_area0_carry__0_i_3/O
-                         net (fo=4, routed)           0.977     2.679    vga/paddle1/paddle1_area0_carry__0_i_3_n_0
-    SLICE_X3Y22          LUT5 (Prop_lut5_I1_O)        0.354     3.033 r  vga/paddle1/paddle1_area0_carry__0_i_1/O
-                         net (fo=1, routed)           0.000     3.033    vga/paddle1_n_25
-    SLICE_X3Y22          CARRY4 (Prop_carry4_DI[0]_CO[0])
-                                                      0.356     3.389 f  vga/paddle1_area0_carry__0/CO[0]
-                         net (fo=1, routed)           1.329     4.717    vga/paddle1/red_OBUF[3]_inst_i_1_0[0]
-    SLICE_X2Y28          LUT6 (Prop_lut6_I4_O)        0.373     5.090 r  vga/paddle1/red_OBUF[3]_inst_i_4/O
-                         net (fo=2, routed)           0.477     5.567    vga/paddle2/red[0]_0
-    SLICE_X2Y28          LUT6 (Prop_lut6_I5_O)        0.124     5.691 r  vga/paddle2/red_OBUF[3]_inst_i_1/O
-                         net (fo=4, routed)           2.668     8.359    red_OBUF[0]
-    H19                  OBUF (Prop_obuf_I_O)         3.519    11.879 r  red_OBUF[1]_inst/O
-                         net (fo=0)                   0.000    11.879    red[1]
+    SLICE_X4Y17          FDCE                         0.000     0.000 r  vga/paddle1/y_reg[3]/C
+    SLICE_X4Y17          FDCE (Prop_fdce_C_Q)         0.456     0.456 f  vga/paddle1/y_reg[3]/Q
+                         net (fo=17, routed)          0.984     1.440    vga/paddle1/y_paddle1[3]
+    SLICE_X5Y18          LUT2 (Prop_lut2_I0_O)        0.152     1.592 r  vga/paddle1/paddle1_area0_carry_i_9/O
+                         net (fo=4, routed)           1.201     2.792    vga/paddle1/paddle1_area0_carry_i_9_n_0
+    SLICE_X5Y19          LUT6 (Prop_lut6_I2_O)        0.326     3.118 r  vga/paddle1/paddle1_area0_carry_i_5/O
+                         net (fo=1, routed)           0.000     3.118    vga/paddle1_n_6
+    SLICE_X5Y19          CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401     3.519 r  vga/paddle1_area0_carry/CO[3]
+                         net (fo=1, routed)           0.000     3.519    vga/paddle1_area0_carry_n_0
+    SLICE_X5Y20          CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.271     3.790 f  vga/paddle1_area0_carry__0/CO[0]
+                         net (fo=1, routed)           1.172     4.962    vga/paddle1/red_OBUF[3]_inst_i_1_0[0]
+    SLICE_X9Y21          LUT6 (Prop_lut6_I3_O)        0.373     5.335 f  vga/paddle1/red_OBUF[3]_inst_i_4/O
+                         net (fo=1, routed)           0.467     5.802    vga/paddle2/red[0]_0
+    SLICE_X10Y23         LUT6 (Prop_lut6_I5_O)        0.124     5.926 r  vga/paddle2/red_OBUF[3]_inst_i_1/O
+                         net (fo=5, routed)           2.778     8.704    red_OBUF[0]
+    H19                  OBUF (Prop_obuf_I_O)         3.519    12.223 r  red_OBUF[1]_inst/O
+                         net (fo=0)                   0.000    12.223    red[1]
     H19                                                               r  red[1] (OUT)
   -------------------------------------------------------------------    -------------------
 
@@ -300,250 +718,31 @@ Slack:                    inf
                             (output port)
   Path Group:             (none)
   Path Type:              Max at Slow Process Corner
-  Data Path Delay:        11.742ns  (logic 5.401ns (45.995%)  route 6.341ns (54.005%))
-  Logic Levels:           7  (CARRY4=1 FDCE=1 LUT4=1 LUT5=1 LUT6=2 OBUF=1)
+  Data Path Delay:        12.087ns  (logic 5.627ns (46.552%)  route 6.460ns (53.448%))
+  Logic Levels:           8  (CARRY4=2 FDCE=1 LUT2=1 LUT6=3 OBUF=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X6Y19          FDCE                         0.000     0.000 r  vga/paddle1/y_reg[3]/C
-    SLICE_X6Y19          FDCE (Prop_fdce_C_Q)         0.518     0.518 r  vga/paddle1/y_reg[3]/Q
-                         net (fo=18, routed)          1.032     1.550    vga/paddle1/y_paddle1[3]
-    SLICE_X7Y21          LUT4 (Prop_lut4_I1_O)        0.152     1.702 f  vga/paddle1/paddle1_area0_carry__0_i_3/O
-                         net (fo=4, routed)           0.977     2.679    vga/paddle1/paddle1_area0_carry__0_i_3_n_0
-    SLICE_X3Y22          LUT5 (Prop_lut5_I1_O)        0.354     3.033 r  vga/paddle1/paddle1_area0_carry__0_i_1/O
-                         net (fo=1, routed)           0.000     3.033    vga/paddle1_n_25
-    SLICE_X3Y22          CARRY4 (Prop_carry4_DI[0]_CO[0])
-                                                      0.356     3.389 f  vga/paddle1_area0_carry__0/CO[0]
-                         net (fo=1, routed)           1.329     4.717    vga/paddle1/red_OBUF[3]_inst_i_1_0[0]
-    SLICE_X2Y28          LUT6 (Prop_lut6_I4_O)        0.373     5.090 r  vga/paddle1/red_OBUF[3]_inst_i_4/O
-                         net (fo=2, routed)           0.477     5.567    vga/paddle2/red[0]_0
-    SLICE_X2Y28          LUT6 (Prop_lut6_I5_O)        0.124     5.691 r  vga/paddle2/red_OBUF[3]_inst_i_1/O
-                         net (fo=4, routed)           2.527     8.218    red_OBUF[0]
-    G19                  OBUF (Prop_obuf_I_O)         3.524    11.742 r  red_OBUF[0]_inst/O
-                         net (fo=0)                   0.000    11.742    red[0]
+    SLICE_X4Y17          FDCE                         0.000     0.000 r  vga/paddle1/y_reg[3]/C
+    SLICE_X4Y17          FDCE (Prop_fdce_C_Q)         0.456     0.456 f  vga/paddle1/y_reg[3]/Q
+                         net (fo=17, routed)          0.984     1.440    vga/paddle1/y_paddle1[3]
+    SLICE_X5Y18          LUT2 (Prop_lut2_I0_O)        0.152     1.592 r  vga/paddle1/paddle1_area0_carry_i_9/O
+                         net (fo=4, routed)           1.201     2.792    vga/paddle1/paddle1_area0_carry_i_9_n_0
+    SLICE_X5Y19          LUT6 (Prop_lut6_I2_O)        0.326     3.118 r  vga/paddle1/paddle1_area0_carry_i_5/O
+                         net (fo=1, routed)           0.000     3.118    vga/paddle1_n_6
+    SLICE_X5Y19          CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401     3.519 r  vga/paddle1_area0_carry/CO[3]
+                         net (fo=1, routed)           0.000     3.519    vga/paddle1_area0_carry_n_0
+    SLICE_X5Y20          CARRY4 (Prop_carry4_CI_CO[0])
+                                                      0.271     3.790 f  vga/paddle1_area0_carry__0/CO[0]
+                         net (fo=1, routed)           1.172     4.962    vga/paddle1/red_OBUF[3]_inst_i_1_0[0]
+    SLICE_X9Y21          LUT6 (Prop_lut6_I3_O)        0.373     5.335 f  vga/paddle1/red_OBUF[3]_inst_i_4/O
+                         net (fo=1, routed)           0.467     5.802    vga/paddle2/red[0]_0
+    SLICE_X10Y23         LUT6 (Prop_lut6_I5_O)        0.124     5.926 r  vga/paddle2/red_OBUF[3]_inst_i_1/O
+                         net (fo=5, routed)           2.637     8.563    red_OBUF[0]
+    G19                  OBUF (Prop_obuf_I_O)         3.524    12.087 r  red_OBUF[0]_inst/O
+                         net (fo=0)                   0.000    12.087    red[0]
     G19                                                               r  red[0] (OUT)
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 vga/paddle2/y_reg[4]/C
-                            (rising edge-triggered cell FDPE)
-  Destination:            green[1]
-                            (output port)
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        11.631ns  (logic 5.424ns (46.639%)  route 6.206ns (53.361%))
-  Logic Levels:           8  (CARRY4=2 FDPE=1 LUT2=1 LUT6=3 OBUF=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X2Y25          FDPE                         0.000     0.000 r  vga/paddle2/y_reg[4]/C
-    SLICE_X2Y25          FDPE (Prop_fdpe_C_Q)         0.518     0.518 f  vga/paddle2/y_reg[4]/Q
-                         net (fo=15, routed)          1.042     1.560    vga/paddle2/y_paddle2[4]
-    SLICE_X3Y23          LUT2 (Prop_lut2_I1_O)        0.124     1.684 r  vga/paddle2/paddle2_area0_carry_i_9/O
-                         net (fo=4, routed)           0.435     2.119    vga/paddle2/paddle2_area0_carry_i_9_n_0
-    SLICE_X2Y24          LUT6 (Prop_lut6_I2_O)        0.124     2.243 r  vga/paddle2/paddle2_area0_carry_i_1/O
-                         net (fo=1, routed)           0.565     2.808    vga/paddle2_n_8
-    SLICE_X3Y24          CARRY4 (Prop_carry4_DI[3]_CO[3])
-                                                      0.385     3.193 r  vga/paddle2_area0_carry/CO[3]
-                         net (fo=1, routed)           0.009     3.202    vga/paddle2_area0_carry_n_0
-    SLICE_X3Y25          CARRY4 (Prop_carry4_CI_CO[0])
-                                                      0.271     3.473 f  vga/paddle2_area0_carry__0/CO[0]
-                         net (fo=2, routed)           1.016     4.488    vga/paddle2/CO[0]
-    SLICE_X2Y27          LUT6 (Prop_lut6_I2_O)        0.373     4.861 r  vga/paddle2/green_OBUF[3]_inst_i_3/O
-                         net (fo=1, routed)           0.793     5.654    vga/paddle1/green[0]_1
-    SLICE_X2Y28          LUT6 (Prop_lut6_I4_O)        0.124     5.778 r  vga/paddle1/green_OBUF[3]_inst_i_1/O
-                         net (fo=4, routed)           2.347     8.125    green_OBUF[0]
-    H17                  OBUF (Prop_obuf_I_O)         3.505    11.631 r  green_OBUF[1]_inst/O
-                         net (fo=0)                   0.000    11.631    green[1]
-    H17                                                               r  green[1] (OUT)
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 vga/paddle2/y_reg[4]/C
-                            (rising edge-triggered cell FDPE)
-  Destination:            green[2]
-                            (output port)
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        11.503ns  (logic 5.448ns (47.361%)  route 6.055ns (52.639%))
-  Logic Levels:           8  (CARRY4=2 FDPE=1 LUT2=1 LUT6=3 OBUF=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X2Y25          FDPE                         0.000     0.000 r  vga/paddle2/y_reg[4]/C
-    SLICE_X2Y25          FDPE (Prop_fdpe_C_Q)         0.518     0.518 f  vga/paddle2/y_reg[4]/Q
-                         net (fo=15, routed)          1.042     1.560    vga/paddle2/y_paddle2[4]
-    SLICE_X3Y23          LUT2 (Prop_lut2_I1_O)        0.124     1.684 r  vga/paddle2/paddle2_area0_carry_i_9/O
-                         net (fo=4, routed)           0.435     2.119    vga/paddle2/paddle2_area0_carry_i_9_n_0
-    SLICE_X2Y24          LUT6 (Prop_lut6_I2_O)        0.124     2.243 r  vga/paddle2/paddle2_area0_carry_i_1/O
-                         net (fo=1, routed)           0.565     2.808    vga/paddle2_n_8
-    SLICE_X3Y24          CARRY4 (Prop_carry4_DI[3]_CO[3])
-                                                      0.385     3.193 r  vga/paddle2_area0_carry/CO[3]
-                         net (fo=1, routed)           0.009     3.202    vga/paddle2_area0_carry_n_0
-    SLICE_X3Y25          CARRY4 (Prop_carry4_CI_CO[0])
-                                                      0.271     3.473 f  vga/paddle2_area0_carry__0/CO[0]
-                         net (fo=2, routed)           1.016     4.488    vga/paddle2/CO[0]
-    SLICE_X2Y27          LUT6 (Prop_lut6_I2_O)        0.373     4.861 r  vga/paddle2/green_OBUF[3]_inst_i_3/O
-                         net (fo=1, routed)           0.793     5.654    vga/paddle1/green[0]_1
-    SLICE_X2Y28          LUT6 (Prop_lut6_I4_O)        0.124     5.778 r  vga/paddle1/green_OBUF[3]_inst_i_1/O
-                         net (fo=4, routed)           2.196     7.974    green_OBUF[0]
-    G17                  OBUF (Prop_obuf_I_O)         3.529    11.503 r  green_OBUF[2]_inst/O
-                         net (fo=0)                   0.000    11.503    green[2]
-    G17                                                               r  green[2] (OUT)
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 vga/paddle1/y_reg[3]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            red[2]
-                            (output port)
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        11.449ns  (logic 5.401ns (47.174%)  route 6.048ns (52.826%))
-  Logic Levels:           7  (CARRY4=1 FDCE=1 LUT4=1 LUT5=1 LUT6=2 OBUF=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X6Y19          FDCE                         0.000     0.000 r  vga/paddle1/y_reg[3]/C
-    SLICE_X6Y19          FDCE (Prop_fdce_C_Q)         0.518     0.518 r  vga/paddle1/y_reg[3]/Q
-                         net (fo=18, routed)          1.032     1.550    vga/paddle1/y_paddle1[3]
-    SLICE_X7Y21          LUT4 (Prop_lut4_I1_O)        0.152     1.702 f  vga/paddle1/paddle1_area0_carry__0_i_3/O
-                         net (fo=4, routed)           0.977     2.679    vga/paddle1/paddle1_area0_carry__0_i_3_n_0
-    SLICE_X3Y22          LUT5 (Prop_lut5_I1_O)        0.354     3.033 r  vga/paddle1/paddle1_area0_carry__0_i_1/O
-                         net (fo=1, routed)           0.000     3.033    vga/paddle1_n_25
-    SLICE_X3Y22          CARRY4 (Prop_carry4_DI[0]_CO[0])
-                                                      0.356     3.389 f  vga/paddle1_area0_carry__0/CO[0]
-                         net (fo=1, routed)           1.329     4.717    vga/paddle1/red_OBUF[3]_inst_i_1_0[0]
-    SLICE_X2Y28          LUT6 (Prop_lut6_I4_O)        0.373     5.090 r  vga/paddle1/red_OBUF[3]_inst_i_4/O
-                         net (fo=2, routed)           0.477     5.567    vga/paddle2/red[0]_0
-    SLICE_X2Y28          LUT6 (Prop_lut6_I5_O)        0.124     5.691 r  vga/paddle2/red_OBUF[3]_inst_i_1/O
-                         net (fo=4, routed)           2.234     7.925    red_OBUF[0]
-    J19                  OBUF (Prop_obuf_I_O)         3.524    11.449 r  red_OBUF[2]_inst/O
-                         net (fo=0)                   0.000    11.449    red[2]
-    J19                                                               r  red[2] (OUT)
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 vga/paddle2/y_reg[4]/C
-                            (rising edge-triggered cell FDPE)
-  Destination:            green[0]
-                            (output port)
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        11.202ns  (logic 5.440ns (48.561%)  route 5.762ns (51.439%))
-  Logic Levels:           8  (CARRY4=2 FDPE=1 LUT2=1 LUT6=3 OBUF=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X2Y25          FDPE                         0.000     0.000 r  vga/paddle2/y_reg[4]/C
-    SLICE_X2Y25          FDPE (Prop_fdpe_C_Q)         0.518     0.518 f  vga/paddle2/y_reg[4]/Q
-                         net (fo=15, routed)          1.042     1.560    vga/paddle2/y_paddle2[4]
-    SLICE_X3Y23          LUT2 (Prop_lut2_I1_O)        0.124     1.684 r  vga/paddle2/paddle2_area0_carry_i_9/O
-                         net (fo=4, routed)           0.435     2.119    vga/paddle2/paddle2_area0_carry_i_9_n_0
-    SLICE_X2Y24          LUT6 (Prop_lut6_I2_O)        0.124     2.243 r  vga/paddle2/paddle2_area0_carry_i_1/O
-                         net (fo=1, routed)           0.565     2.808    vga/paddle2_n_8
-    SLICE_X3Y24          CARRY4 (Prop_carry4_DI[3]_CO[3])
-                                                      0.385     3.193 r  vga/paddle2_area0_carry/CO[3]
-                         net (fo=1, routed)           0.009     3.202    vga/paddle2_area0_carry_n_0
-    SLICE_X3Y25          CARRY4 (Prop_carry4_CI_CO[0])
-                                                      0.271     3.473 f  vga/paddle2_area0_carry__0/CO[0]
-                         net (fo=2, routed)           1.016     4.488    vga/paddle2/CO[0]
-    SLICE_X2Y27          LUT6 (Prop_lut6_I2_O)        0.373     4.861 r  vga/paddle2/green_OBUF[3]_inst_i_3/O
-                         net (fo=1, routed)           0.793     5.654    vga/paddle1/green[0]_1
-    SLICE_X2Y28          LUT6 (Prop_lut6_I4_O)        0.124     5.778 r  vga/paddle1/green_OBUF[3]_inst_i_1/O
-                         net (fo=4, routed)           1.903     7.681    green_OBUF[0]
-    J17                  OBUF (Prop_obuf_I_O)         3.521    11.202 r  green_OBUF[0]_inst/O
-                         net (fo=0)                   0.000    11.202    green[0]
-    J17                                                               r  green[0] (OUT)
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 vga/paddle1/y_reg[3]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            red[3]
-                            (output port)
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        11.063ns  (logic 5.379ns (48.627%)  route 5.683ns (51.373%))
-  Logic Levels:           7  (CARRY4=1 FDCE=1 LUT4=1 LUT5=1 LUT6=2 OBUF=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X6Y19          FDCE                         0.000     0.000 r  vga/paddle1/y_reg[3]/C
-    SLICE_X6Y19          FDCE (Prop_fdce_C_Q)         0.518     0.518 r  vga/paddle1/y_reg[3]/Q
-                         net (fo=18, routed)          1.032     1.550    vga/paddle1/y_paddle1[3]
-    SLICE_X7Y21          LUT4 (Prop_lut4_I1_O)        0.152     1.702 f  vga/paddle1/paddle1_area0_carry__0_i_3/O
-                         net (fo=4, routed)           0.977     2.679    vga/paddle1/paddle1_area0_carry__0_i_3_n_0
-    SLICE_X3Y22          LUT5 (Prop_lut5_I1_O)        0.354     3.033 r  vga/paddle1/paddle1_area0_carry__0_i_1/O
-                         net (fo=1, routed)           0.000     3.033    vga/paddle1_n_25
-    SLICE_X3Y22          CARRY4 (Prop_carry4_DI[0]_CO[0])
-                                                      0.356     3.389 f  vga/paddle1_area0_carry__0/CO[0]
-                         net (fo=1, routed)           1.329     4.717    vga/paddle1/red_OBUF[3]_inst_i_1_0[0]
-    SLICE_X2Y28          LUT6 (Prop_lut6_I4_O)        0.373     5.090 r  vga/paddle1/red_OBUF[3]_inst_i_4/O
-                         net (fo=2, routed)           0.477     5.567    vga/paddle2/red[0]_0
-    SLICE_X2Y28          LUT6 (Prop_lut6_I5_O)        0.124     5.691 r  vga/paddle2/red_OBUF[3]_inst_i_1/O
-                         net (fo=4, routed)           1.869     7.560    red_OBUF[0]
-    N19                  OBUF (Prop_obuf_I_O)         3.502    11.063 r  red_OBUF[3]_inst/O
-                         net (fo=0)                   0.000    11.063    red[3]
-    N19                                                               r  red[3] (OUT)
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 vga/ball_y_reg[6]/C
-                            (rising edge-triggered cell FDPE)
-  Destination:            blue[3]
-                            (output port)
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        10.785ns  (logic 5.278ns (48.937%)  route 5.507ns (51.063%))
-  Logic Levels:           6  (CARRY4=1 FDPE=1 LUT4=1 LUT5=1 LUT6=1 OBUF=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X8Y23          FDPE                         0.000     0.000 r  vga/ball_y_reg[6]/C
-    SLICE_X8Y23          FDPE (Prop_fdpe_C_Q)         0.518     0.518 r  vga/ball_y_reg[6]/Q
-                         net (fo=21, routed)          1.583     2.101    vga/ball_y[6]
-    SLICE_X6Y24          LUT6 (Prop_lut6_I5_O)        0.124     2.225 r  vga/ball_area0_carry__0_i_3/O
-                         net (fo=3, routed)           0.988     3.213    vga/ball_area0_carry__0_i_3_n_0
-    SLICE_X4Y26          LUT4 (Prop_lut4_I2_O)        0.152     3.365 r  vga/ball_area0_carry__0_i_1/O
-                         net (fo=1, routed)           0.000     3.365    vga/ball_area0_carry__0_i_1_n_0
-    SLICE_X4Y26          CARRY4 (Prop_carry4_DI[0]_CO[0])
-                                                      0.356     3.721 f  vga/ball_area0_carry__0/CO[0]
-                         net (fo=2, routed)           0.765     4.486    vga/ball_area0_carry__0_n_3
-    SLICE_X2Y29          LUT5 (Prop_lut5_I4_O)        0.399     4.885 r  vga/blue_OBUF[3]_inst_i_1/O
-                         net (fo=4, routed)           2.171     7.056    blue_OBUF[0]
-    J18                  OBUF (Prop_obuf_I_O)         3.729    10.785 r  blue_OBUF[3]_inst/O
-                         net (fo=0)                   0.000    10.785    blue[3]
-    J18                                                               r  blue[3] (OUT)
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 vga/ball_y_reg[6]/C
-                            (rising edge-triggered cell FDPE)
-  Destination:            blue[1]
-                            (output port)
-  Path Group:             (none)
-  Path Type:              Max at Slow Process Corner
-  Data Path Delay:        10.622ns  (logic 5.256ns (49.484%)  route 5.366ns (50.516%))
-  Logic Levels:           6  (CARRY4=1 FDPE=1 LUT4=1 LUT5=1 LUT6=1 OBUF=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X8Y23          FDPE                         0.000     0.000 r  vga/ball_y_reg[6]/C
-    SLICE_X8Y23          FDPE (Prop_fdpe_C_Q)         0.518     0.518 r  vga/ball_y_reg[6]/Q
-                         net (fo=21, routed)          1.583     2.101    vga/ball_y[6]
-    SLICE_X6Y24          LUT6 (Prop_lut6_I5_O)        0.124     2.225 r  vga/ball_area0_carry__0_i_3/O
-                         net (fo=3, routed)           0.988     3.213    vga/ball_area0_carry__0_i_3_n_0
-    SLICE_X4Y26          LUT4 (Prop_lut4_I2_O)        0.152     3.365 r  vga/ball_area0_carry__0_i_1/O
-                         net (fo=1, routed)           0.000     3.365    vga/ball_area0_carry__0_i_1_n_0
-    SLICE_X4Y26          CARRY4 (Prop_carry4_DI[0]_CO[0])
-                                                      0.356     3.721 f  vga/ball_area0_carry__0/CO[0]
-                         net (fo=2, routed)           0.765     4.486    vga/ball_area0_carry__0_n_3
-    SLICE_X2Y29          LUT5 (Prop_lut5_I4_O)        0.399     4.885 r  vga/blue_OBUF[3]_inst_i_1/O
-                         net (fo=4, routed)           2.030     6.915    blue_OBUF[0]
-    L18                  OBUF (Prop_obuf_I_O)         3.707    10.622 r  blue_OBUF[1]_inst/O
-                         net (fo=0)                   0.000    10.622    blue[1]
-    L18                                                               r  blue[1] (OUT)
   -------------------------------------------------------------------    -------------------
 
 
@@ -553,77 +752,9 @@ Slack:                    inf
 Min Delay Paths
 --------------------------------------------------------------------------------------
 Slack:                    inf
-  Source:                 vga/paddle1/e2/s/meta_reg/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            vga/paddle1/e2/s/q_reg/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.197ns  (logic 0.141ns (71.611%)  route 0.056ns (28.389%))
-  Logic Levels:           1  (FDRE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X9Y26          FDRE                         0.000     0.000 r  vga/paddle1/e2/s/meta_reg/C
-    SLICE_X9Y26          FDRE (Prop_fdre_C_Q)         0.141     0.141 r  vga/paddle1/e2/s/meta_reg/Q
-                         net (fo=1, routed)           0.056     0.197    vga/paddle1/e2/s/meta_reg_n_0
-    SLICE_X9Y26          FDRE                                         r  vga/paddle1/e2/s/q_reg/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 vga/paddle2/e1/s/meta_reg/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            vga/paddle2/e1/s/q_reg/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.197ns  (logic 0.141ns (71.611%)  route 0.056ns (28.389%))
-  Logic Levels:           1  (FDRE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X1Y21          FDRE                         0.000     0.000 r  vga/paddle2/e1/s/meta_reg/C
-    SLICE_X1Y21          FDRE (Prop_fdre_C_Q)         0.141     0.141 r  vga/paddle2/e1/s/meta_reg/Q
-                         net (fo=1, routed)           0.056     0.197    vga/paddle2/e1/s/meta_reg_n_0
-    SLICE_X1Y21          FDRE                                         r  vga/paddle2/e1/s/q_reg/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 vga/paddle1/e1/s/meta_reg/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            vga/paddle1/e1/s/q_reg/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.220ns  (logic 0.164ns (74.580%)  route 0.056ns (25.420%))
-  Logic Levels:           1  (FDRE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X2Y20          FDRE                         0.000     0.000 r  vga/paddle1/e1/s/meta_reg/C
-    SLICE_X2Y20          FDRE (Prop_fdre_C_Q)         0.164     0.164 r  vga/paddle1/e1/s/meta_reg/Q
-                         net (fo=1, routed)           0.056     0.220    vga/paddle1/e1/s/meta
-    SLICE_X2Y20          FDRE                                         r  vga/paddle1/e1/s/q_reg/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 vga/paddle2/e2/s/meta_reg/C
-                            (rising edge-triggered cell FDRE)
-  Destination:            vga/paddle2/e2/s/q_reg/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.220ns  (logic 0.164ns (74.580%)  route 0.056ns (25.420%))
-  Logic Levels:           1  (FDRE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X8Y28          FDRE                         0.000     0.000 r  vga/paddle2/e2/s/meta_reg/C
-    SLICE_X8Y28          FDRE (Prop_fdre_C_Q)         0.164     0.164 r  vga/paddle2/e2/s/meta_reg/Q
-                         net (fo=1, routed)           0.056     0.220    vga/paddle2/e2/s/meta_reg_n_0
-    SLICE_X8Y28          FDRE                                         r  vga/paddle2/e2/s/q_reg/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 vga/paddle2/e1/d/q3_reg/C
+  Source:                 vga/paddle1/e1/d/q3_reg/C
                             (rising edge-triggered cell FDCE)
-  Destination:            vga/paddle2/e1/s/meta_reg/D
+  Destination:            vga/paddle1/e1/s/meta_reg/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
   Data Path Delay:        0.240ns  (logic 0.186ns (77.515%)  route 0.054ns (22.485%))
@@ -631,12 +762,12 @@ Slack:                    inf
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X0Y21          FDCE                         0.000     0.000 r  vga/paddle2/e1/d/q3_reg/C
-    SLICE_X0Y21          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  vga/paddle2/e1/d/q3_reg/Q
-                         net (fo=1, routed)           0.054     0.195    vga/paddle2/e1/d/q3
-    SLICE_X1Y21          LUT4 (Prop_lut4_I2_O)        0.045     0.240 r  vga/paddle2/e1/d/meta_i_1__1/O
-                         net (fo=1, routed)           0.000     0.240    vga/paddle2/e1/s/deb
-    SLICE_X1Y21          FDRE                                         r  vga/paddle2/e1/s/meta_reg/D
+    SLICE_X4Y16          FDCE                         0.000     0.000 r  vga/paddle1/e1/d/q3_reg/C
+    SLICE_X4Y16          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  vga/paddle1/e1/d/q3_reg/Q
+                         net (fo=1, routed)           0.054     0.195    vga/paddle1/e1/d/q3
+    SLICE_X5Y16          LUT4 (Prop_lut4_I3_O)        0.045     0.240 r  vga/paddle1/e1/d/meta_i_1/O
+                         net (fo=1, routed)           0.000     0.240    vga/paddle1/e1/s/deb
+    SLICE_X5Y16          FDRE                                         r  vga/paddle1/e1/s/meta_reg/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
@@ -657,58 +788,20 @@ Slack:                    inf
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
-  Source:                 vga/v_counter_reg[7]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            vga/v_counter_reg[9]/D
+  Source:                 vga/paddle2/e1/s/meta_reg/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            vga/paddle2/e1/s/q_reg/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.294ns  (logic 0.186ns (63.186%)  route 0.108ns (36.814%))
-  Logic Levels:           2  (FDCE=1 LUT6=1)
+  Data Path Delay:        0.263ns  (logic 0.164ns (62.300%)  route 0.099ns (37.700%))
+  Logic Levels:           1  (FDRE=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X0Y23          FDCE                         0.000     0.000 r  vga/v_counter_reg[7]/C
-    SLICE_X0Y23          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  vga/v_counter_reg[7]/Q
-                         net (fo=21, routed)          0.108     0.249    vga/v_counter_reg_n_0_[7]
-    SLICE_X1Y23          LUT6 (Prop_lut6_I2_O)        0.045     0.294 r  vga/v_counter[9]_i_2/O
-                         net (fo=1, routed)           0.000     0.294    vga/v_counter[9]_i_2_n_0
-    SLICE_X1Y23          FDCE                                         r  vga/v_counter_reg[9]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 vga/v_counter_reg[7]/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            vga/v_counter_reg[2]/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.297ns  (logic 0.186ns (62.549%)  route 0.111ns (37.451%))
-  Logic Levels:           2  (FDCE=1 LUT6=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X0Y23          FDCE                         0.000     0.000 r  vga/v_counter_reg[7]/C
-    SLICE_X0Y23          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  vga/v_counter_reg[7]/Q
-                         net (fo=21, routed)          0.111     0.252    vga/v_counter_reg_n_0_[7]
-    SLICE_X1Y23          LUT6 (Prop_lut6_I4_O)        0.045     0.297 r  vga/v_counter[2]_i_1/O
-                         net (fo=1, routed)           0.000     0.297    vga/v_counter[2]_i_1_n_0
-    SLICE_X1Y23          FDCE                                         r  vga/v_counter_reg[2]/D
-  -------------------------------------------------------------------    -------------------
-
-Slack:                    inf
-  Source:                 vga/paddle1/e1/d/q1_reg/C
-                            (rising edge-triggered cell FDCE)
-  Destination:            vga/paddle1/e1/d/q2_reg/D
-  Path Group:             (none)
-  Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.323ns  (logic 0.141ns (43.598%)  route 0.182ns (56.402%))
-  Logic Levels:           1  (FDCE=1)
-
-    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
-  -------------------------------------------------------------------    -------------------
-    SLICE_X1Y20          FDCE                         0.000     0.000 r  vga/paddle1/e1/d/q1_reg/C
-    SLICE_X1Y20          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  vga/paddle1/e1/d/q1_reg/Q
-                         net (fo=2, routed)           0.182     0.323    vga/paddle1/e1/d/q1
-    SLICE_X1Y20          FDCE                                         r  vga/paddle1/e1/d/q2_reg/D
+    SLICE_X6Y18          FDRE                         0.000     0.000 r  vga/paddle2/e1/s/meta_reg/C
+    SLICE_X6Y18          FDRE (Prop_fdre_C_Q)         0.164     0.164 r  vga/paddle2/e1/s/meta_reg/Q
+                         net (fo=1, routed)           0.099     0.263    vga/paddle2/e1/s/meta_reg_n_0
+    SLICE_X5Y19          FDRE                                         r  vga/paddle2/e1/s/q_reg/D
   -------------------------------------------------------------------    -------------------
 
 Slack:                    inf
@@ -717,17 +810,119 @@ Slack:                    inf
   Destination:            vga/paddle1/e2/s/meta_reg/D
   Path Group:             (none)
   Path Type:              Min at Fast Process Corner
-  Data Path Delay:        0.324ns  (logic 0.186ns (57.377%)  route 0.138ns (42.623%))
+  Data Path Delay:        0.303ns  (logic 0.186ns (61.305%)  route 0.117ns (38.695%))
   Logic Levels:           2  (FDCE=1 LUT4=1)
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
   -------------------------------------------------------------------    -------------------
-    SLICE_X9Y25          FDCE                         0.000     0.000 r  vga/paddle1/e2/d/q3_reg/C
-    SLICE_X9Y25          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  vga/paddle1/e2/d/q3_reg/Q
-                         net (fo=1, routed)           0.138     0.279    vga/paddle1/e2/d/q3
-    SLICE_X9Y26          LUT4 (Prop_lut4_I2_O)        0.045     0.324 r  vga/paddle1/e2/d/meta_i_1__0/O
-                         net (fo=1, routed)           0.000     0.324    vga/paddle1/e2/s/deb
-    SLICE_X9Y26          FDRE                                         r  vga/paddle1/e2/s/meta_reg/D
+    SLICE_X0Y18          FDCE                         0.000     0.000 r  vga/paddle1/e2/d/q3_reg/C
+    SLICE_X0Y18          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  vga/paddle1/e2/d/q3_reg/Q
+                         net (fo=1, routed)           0.117     0.258    vga/paddle1/e2/d/q3
+    SLICE_X0Y19          LUT4 (Prop_lut4_I2_O)        0.045     0.303 r  vga/paddle1/e2/d/meta_i_1__0/O
+                         net (fo=1, routed)           0.000     0.303    vga/paddle1/e2/s/deb
+    SLICE_X0Y19          FDRE                                         r  vga/paddle1/e2/s/meta_reg/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 vga/paddle1/e1/s/meta_reg/C
+                            (rising edge-triggered cell FDRE)
+  Destination:            vga/paddle1/e1/s/q_reg/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.313ns  (logic 0.141ns (45.009%)  route 0.172ns (54.991%))
+  Logic Levels:           1  (FDRE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X5Y16          FDRE                         0.000     0.000 r  vga/paddle1/e1/s/meta_reg/C
+    SLICE_X5Y16          FDRE (Prop_fdre_C_Q)         0.141     0.141 r  vga/paddle1/e1/s/meta_reg/Q
+                         net (fo=1, routed)           0.172     0.313    vga/paddle1/e1/s/meta
+    SLICE_X5Y17          FDRE                                         r  vga/paddle1/e1/s/q_reg/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 vga/paddle2/e1/d/q1_reg/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            vga/paddle2/e1/d/q2_reg/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.321ns  (logic 0.141ns (43.905%)  route 0.180ns (56.095%))
+  Logic Levels:           1  (FDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X5Y18          FDCE                         0.000     0.000 r  vga/paddle2/e1/d/q1_reg/C
+    SLICE_X5Y18          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  vga/paddle2/e1/d/q1_reg/Q
+                         net (fo=2, routed)           0.180     0.321    vga/paddle2/e1/d/q1
+    SLICE_X5Y18          FDCE                                         r  vga/paddle2/e1/d/q2_reg/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 vga/paddle2/e2/d/q1_reg/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            vga/paddle2/e2/d/q2_reg/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.321ns  (logic 0.141ns (43.905%)  route 0.180ns (56.095%))
+  Logic Levels:           1  (FDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X5Y24          FDCE                         0.000     0.000 r  vga/paddle2/e2/d/q1_reg/C
+    SLICE_X5Y24          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  vga/paddle2/e2/d/q1_reg/Q
+                         net (fo=2, routed)           0.180     0.321    vga/paddle2/e2/d/q1
+    SLICE_X5Y24          FDCE                                         r  vga/paddle2/e2/d/q2_reg/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 vga/paddle1/e2/d/q2_reg/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            vga/paddle1/e2/d/q3_reg/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.322ns  (logic 0.141ns (43.770%)  route 0.181ns (56.230%))
+  Logic Levels:           1  (FDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X0Y18          FDCE                         0.000     0.000 r  vga/paddle1/e2/d/q2_reg/C
+    SLICE_X0Y18          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  vga/paddle1/e2/d/q2_reg/Q
+                         net (fo=2, routed)           0.181     0.322    vga/paddle1/e2/d/q2
+    SLICE_X0Y18          FDCE                                         r  vga/paddle1/e2/d/q3_reg/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 vga/paddle1/e1/d/q2_reg/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            vga/paddle1/e1/d/q3_reg/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.324ns  (logic 0.141ns (43.491%)  route 0.183ns (56.509%))
+  Logic Levels:           1  (FDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X4Y16          FDCE                         0.000     0.000 r  vga/paddle1/e1/d/q2_reg/C
+    SLICE_X4Y16          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  vga/paddle1/e1/d/q2_reg/Q
+                         net (fo=2, routed)           0.183     0.324    vga/paddle1/e1/d/q2
+    SLICE_X4Y16          FDCE                                         r  vga/paddle1/e1/d/q3_reg/D
+  -------------------------------------------------------------------    -------------------
+
+Slack:                    inf
+  Source:                 vga/paddle1/e1/d/q1_reg/C
+                            (rising edge-triggered cell FDCE)
+  Destination:            vga/paddle1/e1/d/q2_reg/D
+  Path Group:             (none)
+  Path Type:              Min at Fast Process Corner
+  Data Path Delay:        0.326ns  (logic 0.141ns (43.258%)  route 0.185ns (56.742%))
+  Logic Levels:           1  (FDCE=1)
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+    SLICE_X4Y16          FDCE                         0.000     0.000 r  vga/paddle1/e1/d/q1_reg/C
+    SLICE_X4Y16          FDCE (Prop_fdce_C_Q)         0.141     0.141 r  vga/paddle1/e1/d/q1_reg/Q
+                         net (fo=2, routed)           0.185     0.326    vga/paddle1/e1/d/q1
+    SLICE_X4Y16          FDCE                                         r  vga/paddle1/e1/d/q2_reg/D
   -------------------------------------------------------------------    -------------------
 
 

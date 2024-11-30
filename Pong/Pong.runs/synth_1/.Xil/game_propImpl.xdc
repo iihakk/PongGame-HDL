@@ -1,4 +1,4 @@
-set_property SRC_FILE_INFO {cfile:C:/Users/Yara2005/PongGame-HDL/Pong/Pong.srcs/constrs_1/new/Pong_Constraint.xdc rfile:../../../Pong.srcs/constrs_1/new/Pong_Constraint.xdc id:1} [current_design]
+set_property SRC_FILE_INFO {cfile:C:/Users/kjaballah/PongGame-HDL/Pong/Pong.srcs/constrs_1/new/Pong_Constraint.xdc rfile:../../../Pong.srcs/constrs_1/new/Pong_Constraint.xdc id:1} [current_design]
 set_property src_info {type:XDC file:1 line:1 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN W5 [get_ports clk]
 set_property src_info {type:XDC file:1 line:4 export:INPUT save:INPUT read:READ} [current_design]

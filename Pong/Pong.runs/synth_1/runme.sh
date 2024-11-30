@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='C:/Users/Yara2005/PongGame-HDL/Pong/Pong.runs/synth_1'
+HD_PWD='C:/Users/kjaballah/PongGame-HDL/Pong/Pong.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log

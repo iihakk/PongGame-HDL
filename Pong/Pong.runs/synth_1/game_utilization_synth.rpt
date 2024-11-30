@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
-| Date         : Sat Nov 30 14:59:07 2024
+| Date         : Sat Nov 30 16:58:44 2024
 | Host         : CSE-P07-2168-50 running 64-bit major release  (build 9200)
 | Command      : report_utilization -file game_utilization_synth.rpt -pb game_utilization_synth.pb
 | Design       : game
@@ -31,11 +31,11 @@ Table of Contents
 +-------------------------+------+-------+------------+-----------+-------+
 |        Site Type        | Used | Fixed | Prohibited | Available | Util% |
 +-------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs*             |  481 |     0 |          0 |     20800 |  2.31 |
-|   LUT as Logic          |  481 |     0 |          0 |     20800 |  2.31 |
+| Slice LUTs*             |  564 |     0 |          0 |     20800 |  2.71 |
+|   LUT as Logic          |  564 |     0 |          0 |     20800 |  2.71 |
 |   LUT as Memory         |    0 |     0 |          0 |      9600 |  0.00 |
-| Slice Registers         |  313 |     0 |          0 |     41600 |  0.75 |
-|   Register as Flip Flop |  313 |     0 |          0 |     41600 |  0.75 |
+| Slice Registers         |  329 |     0 |          0 |     41600 |  0.79 |
+|   Register as Flip Flop |  329 |     0 |          0 |     41600 |  0.79 |
 |   Register as Latch     |    0 |     0 |          0 |     41600 |  0.00 |
 | F7 Muxes                |    0 |     0 |          0 |     16300 |  0.00 |
 | F8 Muxes                |    0 |     0 |          0 |      8150 |  0.00 |
@@ -56,7 +56,7 @@ Table of Contents
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 15    |          Yes |           - |          Set |
-| 282   |          Yes |           - |        Reset |
+| 298   |          Yes |           - |        Reset |
 | 0     |          Yes |         Set |            - |
 | 16    |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
@@ -78,11 +78,12 @@ Table of Contents
 3. DSP
 ------
 
-+-----------+------+-------+------------+-----------+-------+
-| Site Type | Used | Fixed | Prohibited | Available | Util% |
-+-----------+------+-------+------------+-----------+-------+
-| DSPs      |    0 |     0 |          0 |        90 |  0.00 |
-+-----------+------+-------+------------+-----------+-------+
++----------------+------+-------+------------+-----------+-------+
+|    Site Type   | Used | Fixed | Prohibited | Available | Util% |
++----------------+------+-------+------------+-----------+-------+
+| DSPs           |    6 |     0 |          0 |        90 |  6.67 |
+|   DSP48E1 only |    6 |       |            |           |       |
++----------------+------+-------+------------+-----------+-------+
 
 
 4. IO and GT Specific
@@ -150,18 +151,19 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDCE     |  282 |        Flop & Latch |
-| LUT5     |  216 |                 LUT |
-| LUT4     |  133 |                 LUT |
-| CARRY4   |   81 |          CarryLogic |
-| LUT3     |   71 |                 LUT |
-| LUT2     |   66 |                 LUT |
-| LUT6     |   64 |                 LUT |
-| LUT1     |   58 |                 LUT |
+| FDCE     |  298 |        Flop & Latch |
+| LUT5     |  221 |                 LUT |
+| LUT2     |  169 |                 LUT |
+| LUT4     |  139 |                 LUT |
+| CARRY4   |   98 |          CarryLogic |
+| LUT1     |   63 |                 LUT |
+| LUT6     |   49 |                 LUT |
 | OBUF     |   25 |                  IO |
+| LUT3     |   25 |                 LUT |
 | FDRE     |   16 |        Flop & Latch |
 | FDPE     |   15 |        Flop & Latch |
 | IBUF     |    6 |                  IO |
+| DSP48E1  |    6 |    Block Arithmetic |
 | BUFG     |    2 |               Clock |
 +----------+------+---------------------+
 
