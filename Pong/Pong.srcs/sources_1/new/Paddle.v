@@ -33,7 +33,12 @@ module Paddle(
                 if (up && y > MOVE_DISTANCE) begin
                     y <= y - MOVE_DISTANCE; // Move up
                     move_timer <= UPDATE_DELAY; // Reset timer
-                end else if (down && y < FIELD_HEIGHT - PADDLE_HEIGHT - MOVE_DISTANCE) begin
+                    end
+                else if(up)begin
+                y <= 0; // Move up
+                    move_timer <= UPDATE_DELAY;
+                end
+                 else if (down && y < FIELD_HEIGHT - PADDLE_HEIGHT - MOVE_DISTANCE) begin
                     y <= y + MOVE_DISTANCE; // Move down
                     move_timer <= UPDATE_DELAY; // Reset timer
                 end

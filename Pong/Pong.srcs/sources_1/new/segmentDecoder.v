@@ -19,10 +19,10 @@ module segmentDecoder(
         Ex4enable decoder(.en(count), .num(currentNum), .seg(segments), .anode(anode));
         always @* begin
             case(count)
-            0: currentNum=player1_units;
-            1: currentNum=player1_tens;
-            2: currentNum=player2_units;
-            3: currentNum=player2_tens;
+            0: currentNum=player2_units;
+            1: currentNum=player2_tens;
+            2: currentNum=player1_units;
+            3: currentNum=player1_tens;
             endcase
         end
 
